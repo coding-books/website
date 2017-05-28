@@ -35,6 +35,9 @@ chmod 0777 yii
 
 info "Apply migrations"
 ./yii migrate <<< "yes"
+./yii migrate --migrationPath=@yii/i18n/migrations/ <<< "yes"
+./yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations <<< "yes"
+./yii migrate/up --migrationPath=@yii/rbac/migrations <<< "yes"
 
 info "Create bash-alias 'app' for vagrant user"
 echo 'alias app="cd /app"' | tee /home/vagrant/.bash_aliases
