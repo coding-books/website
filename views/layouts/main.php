@@ -58,8 +58,6 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-    <?php var_dump('pisun');?>
-
     <div class="container">
 
         <?= Breadcrumbs::widget([
