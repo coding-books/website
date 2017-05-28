@@ -10,6 +10,7 @@ $db = require(__DIR__ . ( YII_DEBUG ? '/db.php' : '/db_prod.php'));
 $config = [
     'id' => 'basic',
     'language' => 'en',
+    'sourceLanguage' => 'en',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'modules' => [
@@ -44,6 +45,27 @@ $config = [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
+                ],
+            ],
+        ],
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                    'sourceLanguage' => 'en',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                        'app/error' => 'error.php',
+                    ],
+                ],
+                '*' => [
+                    'class'                 =>  'yii\i18n\DbMessageSource',
+                    'sourceMessageTable'    =>  '{{%source_message}}',
+                    'messageTable'          =>  '{{%message}}',
+                    'enableCaching'         =>  true,
+                    'cachingDuration'       =>  10,
+                    'forceTranslation'      =>  true,
                 ],
             ],
         ],

@@ -16,7 +16,6 @@ use Yii;
  * @property int $views
  *
  * @property BooksCategories[] $booksCategories
- * @property BooksLinks[] $booksLinks
  * @property BooksPhotos[] $booksPhotos
  * @property BooksViews[] $booksViews
  */
@@ -66,14 +65,6 @@ class Books extends \yii\db\ActiveRecord
     public function getBooksCategories()
     {
         return $this->hasMany(BooksCategories::className(), ['book_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getBooksLinks()
-    {
-        return $this->hasMany(BooksLinks::className(), ['book_id' => 'id']);
     }
 
     /**

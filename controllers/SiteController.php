@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\forms\BookForm;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -62,6 +64,26 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionAdd(){
+        $model = new BookForm();
+
+        if(\Yii::$app->request->post($model->formName()) && $model->load(\Yii::$app->request->post())){
+            if($model->validate()){
+                if($model->save()){
+                    \Yii::$app->session->addFlash('success', \Yii::t('messages', 'Book {title} successfully added!', ['title' => $model->title]));
+                }else{
+                    \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Oops! Some wrong in our part'));
+                }
+            }else{
+                \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Form is not valid: {fields}', ['fields' => Html::tag('br').implode(Html::tag('br'), $model->getErrors())]));
+            }
+        }
+
+        return $this->render('add', [
+            'model' =>  $model
+        ]);
     }
 
     /**
