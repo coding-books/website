@@ -10,17 +10,15 @@ use Yii;
         <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-        <li class="item-lang">
-            <?= Html::a('Go to English', array_merge(
-                \Yii::$app->request->get(),
-                [\Yii::$app->controller->route, 'language' => 'en']
-            )); ?>
-        </li>
-        <li class="item-lang">
-            <?= Html::a('Перейти на русский', array_merge(
-                \Yii::$app->request->get(),
-                [\Yii::$app->controller->route, 'language' => 'ru']
-            )); ?>
-        </li>
+        <?php foreach (Yii::$app->params['langs'] as $lang) {
+            if (Yii::$app->language == $lang) { continue; }
+            ?>
+            <li class="item-lang">
+                <?= Html::a(strtoupper($lang), array_merge(
+                    \Yii::$app->request->get(),
+                    [\Yii::$app->controller->route, 'language' => $lang]
+                )); ?>
+            </li>
+        <? }?>
     </ul>
 </div>

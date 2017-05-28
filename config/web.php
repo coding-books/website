@@ -50,7 +50,10 @@ $config = [
         'db' => $db,
         'urlManager' => $urlManager
     ],
-    'params' => $params,
+    'params' => array_merge(
+        $params,
+        ['langs' => $urlLangs]
+    ),
 ];
 
 if (YII_ENV_DEV) {
