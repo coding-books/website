@@ -74,10 +74,7 @@ AppAsset::register($this);
 
 <section id="about-us">
     <div class="container">
-    <?= Breadcrumbs::widget([
-        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-    ]) ?>
-    <?= $content ?>
+        <?= $content ?>
     </div>
 </section>
 
