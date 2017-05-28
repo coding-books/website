@@ -37,7 +37,7 @@ AppAsset::register($this);
             <div class="collapse navbar-collapse">
                     <?php
                     NavBar::begin([
-                        'brandLabel' => 'My Company',
+                        'brandLabel' => 'CoBooks',
                         'brandUrl' => Yii::$app->homeUrl,
                         'options' => [
                             'class' => 'navbar-inverse navbar-fixed-top',
@@ -46,14 +46,12 @@ AppAsset::register($this);
                     echo Nav::widget([
                         'options' => ['class' => 'nav navbar-nav navbar-right'],
                         'items' => [
-                            ['label' => 'Home', 'url' => ['/site/index']],
                             ['label' => 'About', 'url' => ['/site/about']],
-                            ['label' => 'Contact', 'url' => ['/site/contact']],
                             Yii::$app->user->isGuest ? (
-                            ['label' => 'Login', 'url' => ['/site/login']]
+                            ['label' => 'Login', 'url' => ['/user/login']]
                             ) : (
                                 '<li>'
-                                . Html::beginForm(['/site/logout'], 'post')
+                                . Html::beginForm(['/user/logout'], 'post')
                                 . Html::submitButton(
                                     'Logout (' . Yii::$app->user->identity->username . ')',
                                     ['class' => 'btn btn-link logout']
@@ -61,7 +59,9 @@ AppAsset::register($this);
                                 . Html::endForm()
                                 . '</li>'
                             )
-                        ],
+                            ,
+                            '<li> ' . \app\components\widgets\language\LanguageWidget::widget(['cssClass' => 'language-widget']) . '</li>'
+                        ]
                     ]);
                     NavBar::end();
                     ?>
@@ -84,7 +84,7 @@ AppAsset::register($this);
 <footer id="footer">
     <div class="container">
         <div class="text-center">
-            <p>Copyright © 2017</p>
+            <p>CoBooks © 2017</p>
         </div>
     </div>
 </footer>
