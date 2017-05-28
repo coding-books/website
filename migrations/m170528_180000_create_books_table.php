@@ -12,13 +12,6 @@ class m170528_180000_create_books_table extends Migration
      */
     public function up()
     {
-
-        $this->dropTable('books');
-        $this->dropTable('books_links');
-        $this->dropTable('books_photos');
-        $this->dropTable('categories');
-        $this->dropTable('books_categories');
-
         $this->createTable('books', [
             'id'    =>  $this->primaryKey()->unsigned(),
             'slug'  =>  $this->string(255)->notNull(),
