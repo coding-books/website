@@ -11,6 +11,7 @@ $db = require(__DIR__ . ( YII_DEBUG ? '/db.php' : '/db_prod.php'));
 $config = [
     'id' => 'basic',
     'language' => 'en',
+    'name' => 'CoBooks',
     'sourceLanguage' => 'en',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
