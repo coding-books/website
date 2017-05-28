@@ -16,7 +16,7 @@ use Yii;
             <li class="item-lang">
                 <?= Html::a(strtoupper($lang), array_merge(
                     \Yii::$app->request->get(),
-                    [\Yii::$app->controller->route, 'language' => $lang]
+                    ['/' . Yii::$app->controller->route, 'language' => $lang]
                 )); ?>
             </li>
         <? }?>
