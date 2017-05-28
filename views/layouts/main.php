@@ -30,19 +30,17 @@ AppAsset::register($this);
     <div class="navbar navbar-inverse navbar-fixed-top" role="banner">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-                </button>
+               <?php
+//                   NavBar::begin([
+//                       'brandLabel' =>  Yii::$app->name ,
+//                       'brandUrl' => Yii::$app->homeUrl,
+//                   ]);
+               ?>
+                <a class="navbar-brand" href="<?= Yii::$app->homeUrl ?>" ><h1><?= Yii::$app->name  ?></h1></a>
+
             </div>
             <div class="collapse navbar-collapse">
                     <?php
-                    NavBar::begin([
-                        'brandLabel' => 'CoBooks',
-                        'brandUrl' => Yii::$app->homeUrl,
-                        'options' => [
-                            'class' => 'navbar-inverse navbar-fixed-top',
-                        ],
-                    ]);
                     echo Nav::widget([
                         'options' => ['class' => 'nav navbar-nav navbar-right'],
                         'items' => [
@@ -63,7 +61,7 @@ AppAsset::register($this);
                             '<li> ' . \app\components\widgets\language\LanguageWidget::widget(['cssClass' => 'language-widget']) . '</li>'
                         ]
                     ]);
-                    NavBar::end();
+
                     ?>
 
             </div>
@@ -72,7 +70,7 @@ AppAsset::register($this);
 </header>
 
 
-<section id="about-us">
+<section>
     <div class="container">
         <?= $content ?>
     </div>
