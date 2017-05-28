@@ -15,7 +15,13 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'modules' => [
-        'user' => ['class' => 'dektrium\user\Module'],
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'enableGeneratingPassword ' => true,
+            'confirmWithin' => 86400,
+            'cost' => 12,
+            'admins' => ['mihail', 'krava', 'kravalg', 'bobroid']
+        ],
         'rbac' => 'dektrium\rbac\RbacWebModule',
     ],
     'components' => [
