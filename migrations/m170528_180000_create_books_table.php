@@ -21,7 +21,7 @@ class m170528_180000_create_books_table extends Migration
 
         $this->createTable('books', [
             'id'    =>  $this->primaryKey()->unsigned(),
-            'slug'  =>  $this->string()->notNull(),
+            'slug'  =>  $this->string(255)->notNull(),
         ]);
 
         $this->createTable('books_links', [
@@ -38,7 +38,7 @@ class m170528_180000_create_books_table extends Migration
 
         $this->createTable('categories', [
             'id'            =>  $this->primaryKey()->unsigned(),
-            'slug'          =>  $this->text()->notNull(),
+            'slug'          =>  $this->string(255)->notNull(),
             'parent_id'     =>  $this->integer()->unsigned(),
         ]);
 
