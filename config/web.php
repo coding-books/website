@@ -5,7 +5,7 @@ $cookieValidationKey = require(__DIR__ . '/validation_key.php');
 $urlManager = require(__DIR__ . '/url_manager.php');
 $urlLangs = require(__DIR__ . '/url_lang.php');
 
-$db = require(__DIR__ . ( YII_ENV_DEV ? '/db.php' : '/db_prod.php'));
+$db = require(__DIR__ . ( YII_DEBUG ? '/db.php' : '/db_prod.php'));
 
 $config = [
     'id' => 'basic',
