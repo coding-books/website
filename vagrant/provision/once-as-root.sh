@@ -42,7 +42,7 @@ apt-get update
 apt-get upgrade -y
 
 info "Install additional software"
-apt-get install -y git php7.0 php7.0-curl php7.0-xml php7.0-intl php7.0-fpm php7.0-mysql php7.0-cli php7.0-gd php7.0-json nginx mysql-server-5.6 --force-yes
+apt-get install -y git php7.0 php7.0-mbstring php7.0-curl php7.0-xml php7.0-intl php7.0-fpm php7.0-zip php7.0-mysql php7.0-cli php7.0-gd php7.0-json nginx mysql-server-5.6 --force-yes
 
 info "Configure MySQL"
 sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
@@ -63,8 +63,8 @@ ln -s /app/vagrant/nginx/app.conf /etc/nginx/sites-enabled/app.conf
 echo "Done!"
 
 info "Initailize databases for MySQL"
-mysql -uroot <<< "CREATE DATABASE yii2advanced"
-mysql -uroot <<< "CREATE DATABASE yii2advanced_test"
+mysql -uroot <<< "CREATE DATABASE yii2basic"
+mysql -uroot <<< "CREATE DATABASE yii2basic_test"
 echo "Done!"
 
 info "Install composer"
