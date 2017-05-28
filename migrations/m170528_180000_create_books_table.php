@@ -12,9 +12,22 @@ class m170528_180000_create_books_table extends Migration
      */
     public function up()
     {
+
+
+        $this->dropForeignKey('fk-books_links-book_id-books-id', 'books_links');
+        $this->dropForeignKey('fk-books_photos-book_id-books-id', 'books_photos');
+        $this->dropForeignKey('fk-books_categories-book_id-books-id', 'books_categories');
+        $this->dropForeignKey('fk-books_categories-category_id-categories-id', 'books_categories');
+
+        $this->dropTable('books');
+        $this->dropTable('books_links');
+        $this->dropTable('books_photos');
+        $this->dropTable('categories');
+        $this->dropTable('books_categories');
+
         $this->createTable('books', [
             'id'    =>  $this->primaryKey()->unsigned(),
-            'slug'  =>  $this->text()->notNull(),
+            'slug'  =>  $this->string()->notNull(),
         ]);
 
         $this->createTable('books_links', [
@@ -57,6 +70,15 @@ class m170528_180000_create_books_table extends Migration
      */
     public function down()
     {
+        $this->dropForeignKey('fk-books_links-book_id-books-id', 'books_links');
+        $this->dropForeignKey('fk-books_photos-book_id-books-id', 'books_photos');
+        $this->dropForeignKey('fk-books_categories-book_id-books-id', 'books_categories');
+        $this->dropForeignKey('fk-books_categories-category_id-categories-id', 'books_categories');
+
         $this->dropTable('books');
+        $this->dropTable('books_links');
+        $this->dropTable('books_photos');
+        $this->dropTable('categories');
+        $this->dropTable('books_categories');
     }
 }
