@@ -3,13 +3,19 @@
 $params = require(__DIR__ . '/params.php');
 $cookieValidationKey = require(__DIR__ . '/validation_key.php');
 $urlManager = require(__DIR__ . '/url_manager.php');
+$urlLangs = require(__DIR__ . '/url_lang.php');
 
 $db = require(__DIR__ . ( YII_ENV_DEV ? '/db.php' : '/db_prod.php'));
 
 $config = [
     'id' => 'basic',
+    'language' => 'en',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'modules' => [
+        'user' => ['class' => 'dektrium\user\Module'],
+        'rbac' => 'dektrium\rbac\RbacWebModule',
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
