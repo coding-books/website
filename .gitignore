@@ -35,3 +35,6 @@ phpunit.phar
 
 tests/_output/*
 tests/_support/_generated
+
+/config/db_prod.php
+/config/validation_key.php
