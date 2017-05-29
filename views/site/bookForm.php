@@ -7,14 +7,21 @@
  *
  * @var $model \app\models\forms\BookForm
  */
-$form = \yii\bootstrap\ActiveForm::begin();
+use yii\helpers\Html;
 
-echo $form->field($model, 'title'),
-    $form->field($model, 'slug'),
-    $form->field($model, 'language_code')->label(false)->hiddenInput(['style' => 'display: none']),
-    $form->field($model, 'download_link'),
-    $form->field($model, 'categories'),
-    $form->field($model, 'photos'),
-    \yii\helpers\Html::tag('div', \yii\helpers\Html::button(Yii::t('buttons', 'Add book'), ['class' => 'btn btn-success', 'type' => 'submit']), ['class' => 'text-center']);
+$form = \yii\bootstrap\ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);
+
+echo $form->field($model, 'title').
+    $form->field($model, 'language_code')->dropDownList($model->getLanguageCodes()).
+    $form->field($model, 'description').
+    $form->field($model, 'categories').
+    $form->field($model, 'book_file')->fileInput().
+    $form->field($model, 'photos_files[]')->fileInput(['multiple' => true, 'accept' => 'image/*']).
+    Html::tag('div',
+        Html::button(Yii::t('buttons', 'Add book'), ['class' => 'btn btn-success', 'type' => 'submit']),
+        [
+            'class' => 'text-center'
+        ]
+    );
 
 $form->end();

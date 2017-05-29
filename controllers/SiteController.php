@@ -72,12 +72,22 @@ class SiteController extends Controller
         if(\Yii::$app->request->post($model->formName()) && $model->load(\Yii::$app->request->post())){
             if($model->validate()){
                 if($model->save()){
+                    \Yii::trace('success');
                     \Yii::$app->session->addFlash('success', \Yii::t('messages', 'Book {title} successfully added!', ['title' => $model->title]));
                 }else{
+                    \Yii::trace('fail');
                     \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Oops! Some wrong in our part'));
                 }
             }else{
-                \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Form is not valid: {fields}', ['fields' => Html::tag('br').implode(Html::tag('br'), $model->getErrors())]));
+                $errors = null;
+
+                foreach($model->getErrors() as $error){
+                    $errors .= Html::tag('br').array_shift($error);
+                }
+
+                \Yii::trace($errors);
+
+                \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Form is not valid: {fields}', ['fields' => $errors]));
             }
         }
 

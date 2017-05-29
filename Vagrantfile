@@ -47,6 +47,7 @@ Vagrant.configure("2") do |config|
 
   # disable folder '/vagrant' (guest machine)
   config.vm.synced_folder '.', '/vagrant', disabled: true
+  config.vm.synced_folder '.', '/runtime', disabled: true
 
   # hosts settings (host machine)
   config.vm.provision :hostmanager
