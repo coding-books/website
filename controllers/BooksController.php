@@ -20,17 +20,17 @@ class BooksController extends Controller
     public function behaviors()
     {
         return [
-            /*'access' => [
+            'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['add'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['add'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                 ],
-            ],*/
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
