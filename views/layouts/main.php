@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use kartik\growl\Growl;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -76,6 +77,23 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </section>
+<?php if (\Yii::$app->session->getFlash('success')) {?>
+    <?= Growl::widget([
+        'type' => Growl::TYPE_SUCCESS,
+        'icon' => 'glyphicon glyphicon-ok-sign',
+        'title' => 'Note',
+        'showSeparator' => true,
+        'body' => Yii::$app->session->getFlash('success')
+    ]) ?>
+<?php }else if(\Yii::$app->session->getFlash('danger')){ ?>
+    <?= Growl::widget([
+        'type' => Growl::TYPE_DANGER,
+        'title' => 'Warning!',
+        'icon' => 'glyphicon glyphicon-exclamation-sign',
+        'body' => \Yii::$app->session->getFlash('danger'),
+        'showSeparator' => true
+    ]) ?>
+<?php } ?>
 
 <footer id="footer">
     <div class="container">
