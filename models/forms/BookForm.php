@@ -11,7 +11,6 @@ namespace app\models\forms;
 
 use app\models\Books;
 use app\models\BooksPhotos;
-use GuzzleHttp\Tests\Psr7\Str;
 use yii\base\Model;
 use yii\helpers\BaseInflector;
 use yii\helpers\StringHelper;
@@ -54,7 +53,7 @@ class BookForm extends Model
             [['language_code', 'title', 'description', 'book_file'], 'required'],
             [['categories', 'photos'], 'safe'],
             [['book_file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'epub, pdf'],
-            [['photos_files'], 'file', 'extensions' => 'png, jpg']
+            //[['photos_files'], 'file', 'extensions' => 'png, jpg']
         ];
     }
 

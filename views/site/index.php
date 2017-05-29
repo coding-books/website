@@ -6,6 +6,7 @@ use yii\helpers\Url;
 
 /* @var $books array */
 /* @var $book \app\models\Books */
+/* @var $booksPhotos \app\models\BooksPhotos */
 
 $this->title = Yii::$app->name . ' - ' . Yii::t('seo','Coding books | Programming Library');
 ?>
@@ -14,10 +15,12 @@ $this->title = Yii::$app->name . ' - ' . Yii::t('seo','Coding books | Programmin
    <h1></h1>
 </div>
 <div class="row">
-    <?php foreach ($books as $book){?>
+    <?php foreach ($books as $book){
+        $booksPhotos = $book->booksPhotos[0];
+        ?>
     <div class="col-sm-4">
         <div class="single-blog">
-            <img src="<?= Html::encode($book->booksPhotos[0]) ?>" alt="">
+            <img src="<?= $booksPhotos->src ?>" alt="<?= Html::encode($book->title . ' - ' . Yii::t('seo','Book cover')) ?>">
             <h2><?= Html::encode($book->title) ?></h2>
             <ul class="post-meta">
                 <li><i class="fa fa-pencil-square-o"></i><strong> Posted By:</strong> John</li>

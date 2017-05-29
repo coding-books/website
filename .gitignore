@@ -43,3 +43,6 @@ tests/_support/_generated
 /.htaccess
 /web/.htaccess
 /config/mailer_transport.php
+
+/web/photos/*
+/web/books/*

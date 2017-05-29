@@ -62,7 +62,7 @@ class SiteController extends Controller
     {
 
         return $this->render('index', [
-            'books' => Books::findAll([])
+            'books' => Books::find()->all()
         ]);
     }
 
