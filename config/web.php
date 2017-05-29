@@ -24,6 +24,7 @@ $config = [
             'admins' => ['mihail', 'krava', 'kravalg', 'bobroid']
         ],
         'rbac' => 'dektrium\rbac\RbacWebModule',
+        'i18n' => Zelenin\yii\modules\I18n\Module::className()
     ],
     'components' => [
         'request' => [
@@ -47,25 +48,8 @@ $config = [
             ],
         ],
         'i18n' => [
-            'translations' => [
-                'app*' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/messages',
-                    'sourceLanguage' => 'en',
-                    'fileMap' => [
-                        'app' => 'app.php',
-                        'app/error' => 'error.php',
-                    ],
-                ],
-                '*' => [
-                    'class'                 =>  'yii\i18n\DbMessageSource',
-                    'sourceMessageTable'    =>  '{{%source_message}}',
-                    'messageTable'          =>  '{{%message}}',
-                    'enableCaching'         =>  true,
-                    'cachingDuration'       =>  10,
-                    'forceTranslation'      =>  true,
-                ],
-            ],
+            'class' => Zelenin\yii\modules\I18n\components\I18N::className(),
+            'languages' => $urlLangs
         ],
         'db' => $db,
         'urlManager' => $urlManager

@@ -2,6 +2,7 @@
 
 $params = require(__DIR__ . '/params.php');
 $db = require(__DIR__ . '/db.php');
+$urlLangs = require(__DIR__ . '/url_lang.php');
 
 $config = [
     'id' => 'basic-console',
@@ -20,10 +21,15 @@ $config = [
                 ],
             ],
         ],
+        'i18n' => [
+            'class' => Zelenin\yii\modules\I18n\components\I18N::className(),
+            'languages' => $urlLangs
+        ],
         'db' => $db,
     ],
     'modules' => [
         'rbac' => 'dektrium\rbac\RbacConsoleModule',
+        'i18n' => Zelenin\yii\modules\I18n\Module::className()
     ],
     'params' => $params,
     /*
