@@ -77,10 +77,10 @@ class BookForm extends Model
     }
 
     public function save(){
-        $bookName = StringHelper::truncate(BaseInflector::transliterate($this->title), 40);
+        $bookName = preg_replace('/\s+/', '_', StringHelper::truncate(BaseInflector::transliterate($this->title), 40, false));
 
         $savedPhotos = [];
-        $id = time().'_'.StringHelper::truncate(md5(time()), 10);
+        $id = time().'_'.StringHelper::truncate(md5(time()), 10, false);
         $newBookName = \Yii::$app->params['books_dir'].DIRECTORY_SEPARATOR.$bookName.$id.'-'.$this->language_code.'.'.$this->book_file->extension;
 
         if($this->book_file->saveAs(\Yii::getAlias('@webroot').$newBookName)){
@@ -107,6 +107,7 @@ class BookForm extends Model
         $this->slug = $bookName;
 
         $book = new Books($this->getAttributes(null, ['categories', 'photos', 'book_file', 'photos_files']));
+        $book->creator_id = \Yii::$app->user->id;
 
         if($book->save()){
             foreach($savedPhotos as $photo){

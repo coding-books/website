@@ -2,11 +2,13 @@
 
 namespace app\controllers;
 
+use app\models\Books;
 use app\models\forms\BookForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Html;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -63,10 +65,8 @@ class BooksController extends Controller
         if(\Yii::$app->request->post($model->formName()) && $model->load(\Yii::$app->request->post())){
             if($model->validate()){
                 if($model->save()){
-                    \Yii::trace('success');
                     \Yii::$app->session->addFlash('success', \Yii::t('messages', 'Book {title} successfully added!', ['title' => $model->title]));
                 }else{
-                    \Yii::trace('fail');
                     \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Oops! Some wrong in our part'));
                 }
             }else{
@@ -76,14 +76,25 @@ class BooksController extends Controller
                     $errors .= Html::tag('br').array_shift($error);
                 }
 
-                \Yii::trace($errors);
-
-                \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Form is not valid: {fields}', ['fields' => $errors]));
+                \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Form have errors: {fields}', ['fields' => $errors]));
             }
         }
 
         return $this->render('add', [
             'model' =>  $model
+        ]);
+    }
+
+    public function actionView($id, $slug = null){
+        $book = Books::findOne(['id' => $id]);
+
+        if(!$book){
+            throw new NotFoundHttpException('Book not found!');
+        }
+
+
+        return $this->render('view', [
+            'book'  =>  $book
         ]);
     }
 }
