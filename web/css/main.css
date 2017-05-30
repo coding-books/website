@@ -32,6 +32,11 @@
 ======================*/
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
 
+html,
+body {
+    height: 100%;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     position: relative;
@@ -1077,7 +1082,7 @@ h1, h2, h3, h4, h5, h6 {
 .single-blog {
     margin-bottom: 30px;
     background-color: #F7F7F7;
-    padding: 25px;
+    padding: 10px;
     transition: all 1s ease 0s;
     -moz-transition: all 1s ease 0s;
     -webkit-transition: all 1s ease 0s;
@@ -1102,7 +1107,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .single-blog img {
     width: 100%;
-    margin-bottom: 20px
 }
 
 .single-blog h2 {
@@ -1550,4 +1554,16 @@ h1, h2, h3, h4, h5, h6 {
     -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
     filter: alpha(opacity=100);
     opacity: 1;
+}
+
+.single-blog > div {
+    padding: 0 5px;
+}
+
+.single-blog > div:first-child {
+    padding-left: 0;
+}
+
+.single-blog > div:nth-child(2) {
+    padding-right: 0;
 }
