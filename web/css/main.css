@@ -525,6 +525,15 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: capitalize;
 }
 
+.about-us .title {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.about-us .nav-tabs .fa {
+    margin-right: 5px;
+}
+
 #about-us p {
     font-weight: 300;
     font-size: 15px
@@ -537,7 +546,6 @@ h1, h2, h3, h4, h5, h6 {
 .about-us h3 {
     font-size: 20px;
     margin-bottom: 18px;
-    text-transform: uppercase;
 }
 
 .about-us .tab-content {
