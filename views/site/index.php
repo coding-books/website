@@ -30,7 +30,7 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
                     <a href="<?= Url::to(['books/view', 'slug' => $book->slug, 'id' => $book->id]) ?>" class="btn btn-xs btn-info" target="_blank">
                         <?= Yii::t('books','Read More') ?>
                     </a>
-                    <a href="<?= Url::to($book->download_link) ?>" class="btn btn-xs btn-success" target="_blank">
+                    <a href="<?= Url::to($book->getDownloadLink()) ?>" class="btn btn-xs btn-success" target="_blank">
                         <?= Yii::t('books','Download') ?>
                     </a>
                 </div>
