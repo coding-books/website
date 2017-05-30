@@ -7,6 +7,7 @@
  *
  * @var $model \app\models\forms\BookForm
  */
+use vova07\imperavi\Widget;
 use yii\helpers\Html;
 
 $form = \yii\bootstrap\ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);
@@ -32,7 +33,16 @@ echo $form->field($model, 'title').
             'allowClear'        =>  true
         ],
     ]).
-    $form->field($model, 'description')->textarea().
+    $form->field($model, 'description')->widget(Widget::className(), [
+        'settings' => [
+            'lang' => \Yii::$app->language,
+            'minHeight' => 200,
+            'plugins' => [
+                'clips',
+                'fullscreen'
+            ]
+        ]
+    ]).
     $form->field($model, 'book_file')->fileInput().
     $form->field($model, 'photos_files[]')->fileInput(['multiple' => true, 'accept' => 'image/*']).
     Html::tag('div',

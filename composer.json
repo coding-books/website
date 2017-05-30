@@ -24,7 +24,8 @@
         "zelenin/yii2-i18n-module": "dev-master",
         "kartik-v/yii2-widget-growl": "*",
         "kartik-v/yii2-widgets": "*",
-        "rmrevin/yii2-fontawesome": "~2.17"
+        "rmrevin/yii2-fontawesome": "~2.17",
+        "vova07/yii2-imperavi-widget": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

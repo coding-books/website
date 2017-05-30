@@ -139,18 +139,20 @@ class BookForm extends Model
 
             $existedTags = ArrayHelper::getColumn(BooksTags::find()->select('tag')->where(['in', 'tag', $this->tags])->all(), 'tag');
 
-            foreach($this->tags as $tag){
-                if(!in_array($tag, $existedTags)){
-                    $tag = new BooksTags([
-                        'tag'   =>  $tag
-                    ]);
+            if (!empty($this->tags) && is_array($this->tags)) {
+                foreach($this->tags as $tag){
+                    if(!in_array($tag, $existedTags)){
+                        $tag = new BooksTags([
+                            'tag'   =>  $tag
+                        ]);
 
-                    $tag->save();
-                }else{
-                    $tag = BooksTags::findOne(['tag' => $tag]);
+                        $tag->save();
+                    }else{
+                        $tag = BooksTags::findOne(['tag' => $tag]);
+                    }
+
+                    (new BooksTagsRef(['book_id' => $book->id, 'tag_id' => $tag->id]))->save();
                 }
-
-                (new BooksTagsRef(['book_id' => $book->id, 'tag_id' => $tag->id]))->save();
             }
 
             (new BooksLinks([

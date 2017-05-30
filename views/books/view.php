@@ -19,7 +19,7 @@ $this->title .= Yii::t('seo', 'read online & free download programming books');
         <div class="col-md-4">
             <img src="<?= $book->getMainBookPhoto() ? $book->getMainBookPhoto()->src : \Yii::$app->params['no_image_src'] ?>" alt="<?= Html::encode(Yii::t('seo','{title} - Book cover', ['title' => $book->title])) ?>">
         </div>
-        <div class="col-sm-8">
+        <div class="col-md-8">
             <h3 class="title">
                 <?= Html::encode($book->title) ?>
             </h3>
