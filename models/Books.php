@@ -12,7 +12,6 @@ use Yii;
  * @property string $language_code
  * @property string $title
  * @property string $description
- * @property string $download_link
  * @property int $views
  * @property int $created
  * @property int $creator_id
@@ -39,7 +38,7 @@ class Books extends \yii\db\ActiveRecord
     {
         return [
             [['slug', 'language_code'], 'required'],
-            [['title', 'description', 'download_link'], 'string'],
+            [['title', 'description'], 'string'],
             [['views', 'created', 'creator_id'], 'integer'],
             [['slug'], 'string', 'max' => 255],
             [['language_code'], 'string', 'max' => 2],
@@ -57,7 +56,6 @@ class Books extends \yii\db\ActiveRecord
             'language_code' => 'Language Code',
             'title' => 'Title',
             'description' => 'Description',
-            'download_link' => 'Download Link',
             'views' => 'Views',
         ];
     }
@@ -113,5 +111,9 @@ class Books extends \yii\db\ActiveRecord
         }
 
         return null;
+    }
+
+    public function getDownloadLink(){
+        
     }
 }

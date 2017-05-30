@@ -63,6 +63,8 @@ ln -s /app/vagrant/nginx/app.conf /etc/nginx/sites-enabled/app.conf
 echo "Done!"
 
 info "Initailize databases for MySQL"
+mysql -uroot <<< "CREATE USER 'root'@'%'"
+mysql -uroot <<< "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION"
 mysql -uroot <<< "CREATE DATABASE cobooks"
 mysql -uroot <<< "CREATE DATABASE cobooks_test"
 echo "Done!"
