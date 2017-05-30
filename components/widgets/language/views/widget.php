@@ -21,8 +21,8 @@ use Yii;
                 <?= Html::a(strtoupper($lang), array_merge(
                     \Yii::$app->request->get(),
                     ['/' . Yii::$app->controller->route, 'language' => $lang]
-                )); ?>
+                ))?>
             </li>
-        <? } ?>
+        <?php } ?>
     </ul>
 </div>
