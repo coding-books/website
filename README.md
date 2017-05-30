@@ -15,5 +15,3 @@ php yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations
 php yii migrate/up --migrationPath=@yii/rbac/migrations
 php yii migrate --migrationPath=@Zelenin/yii/modules/I18n/migrations
 ```
-
-You can see code coverage output under the `tests/_output` directory.
