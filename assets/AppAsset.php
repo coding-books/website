@@ -18,8 +18,7 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/font-awesome.min.css',
-        'css/main.css',
+        'css/main.css?1',
         'css/prettyPhoto.css',
         'css/responsive.css',
     ];
@@ -34,6 +33,7 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\web\JqueryAsset',
-        'yii\bootstrap\BootstrapPluginAsset'
+        'yii\bootstrap\BootstrapPluginAsset',
+        'rmrevin\yii\fontawesome\AssetBundle'
     ];
 }

@@ -19,6 +19,7 @@ use Yii;
  * @property BooksCategories[] $booksCategories
  * @property BooksPhotos[] $booksPhotos
  * @property BooksViews[] $booksViews
+ * @property \dektrium\user\models\User $authors
  * @property \dektrium\user\models\User $booksCreator
  */
 class Books extends \yii\db\ActiveRecord
@@ -89,6 +90,15 @@ class Books extends \yii\db\ActiveRecord
      */
     public function getBooksCreator(){
         return $this->hasOne((\Yii::$app->user)::className(), ['creator_id' => 'id']);
+    }
+
+    /**
+     * //TODO: implement relation of the Author's model
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAuthors(){
+        return $this->hasMany((\Yii::$app->user)::className(), ['creator_id' => 'id']);
     }
 
     public function beforeSave($insert)

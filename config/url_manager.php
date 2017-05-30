@@ -9,5 +9,6 @@ return [
     'enablePrettyUrl' => true,
     'showScriptName' => false,
     'rules' => [
+        '<controller:(books)>/<action:(view)>/<id>-<slug>' => '<controller>/<action>',
     ],
 ];
