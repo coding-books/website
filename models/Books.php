@@ -19,7 +19,8 @@ use Yii;
  * @property BooksCategories[] $booksCategories
  * @property BooksPhotos[] $booksPhotos
  * @property BooksViews[] $booksViews
- * @property \dektrium\user\models\User $authors
+ * @property BooksAuthors[] $authors
+ * @property BooksLinks[] $booksLinks
  * @property \dektrium\user\models\User $booksCreator
  */
 class Books extends \yii\db\ActiveRecord
@@ -93,12 +94,23 @@ class Books extends \yii\db\ActiveRecord
     }
 
     /**
-     * //TODO: implement relation of the Author's model
      *
      * @return \yii\db\ActiveQuery
      */
     public function getAuthors(){
-        return $this->hasMany((\Yii::$app->user)::className(), ['creator_id' => 'id']);
+        return $this->hasMany(BooksAuthors::className(), ['author_id' => 'id']);
+    }
+
+    /**
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBooksLinks(){
+        return $this->hasMany(BooksLinks::className(), ['book_id' => 'id']);
+    }
+
+    public function getBooksTags(){
+        //return $this->hasMany(BooksTags::className(), [''])
     }
 
     public function beforeSave($insert)
@@ -123,7 +135,29 @@ class Books extends \yii\db\ActiveRecord
         return null;
     }
 
+    /**
+     * @return BooksLinks|mixed
+     */
+    public function getDownloadLinkModel(){
+        $links = $this->booksLinks;
+
+        foreach($links as $link){
+            if($link->language_code == \Yii::$app->language){
+                return $link;
+            }
+        }
+
+        return array_shift($links);
+    }
+
+    /**
+     * @return string
+     */
     public function getDownloadLink(){
+        if(is_null($this->getDownloadLinkModel())){
+            return null;
+        }
         
+        return $this->getDownloadLinkModel()->link;
     }
 }

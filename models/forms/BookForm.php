@@ -9,8 +9,12 @@
 namespace app\models\forms;
 
 use app\models\Books;
+use app\models\BooksLinks;
 use app\models\BooksPhotos;
+use app\models\BooksTags;
+use app\models\BooksTagsRef;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 use yii\helpers\BaseInflector;
 use yii\helpers\StringHelper;
 use yii\web\UploadedFile;
@@ -133,21 +137,33 @@ class BookForm extends Model
                 $bookPhoto->save();
             }
 
-            if($this->tags){
-                $this->updateTags($book);
+            $existedTags = ArrayHelper::getColumn(BooksTags::find()->select('tag')->where(['in', 'tag', $this->tags])->all(), 'tag');
+
+            foreach($this->tags as $tag){
+                if(!in_array($tag, $existedTags)){
+                    $tag = new BooksTags([
+                        'tag'   =>  $tag
+                    ]);
+
+                    $tag->save();
+                }else{
+                    $tag = BooksTags::findOne(['tag' => $tag]);
+                }
+
+                (new BooksTagsRef(['book_id' => $book->id, 'tag_id' => $tag->id]))->save();
             }
+
+            (new BooksLinks([
+                'book_id'       =>  $book->id,
+                'link'          =>  $this->download_link,
+                'language_code' =>  $this->language_code,
+                'format'        =>  $this->book_file->extension
+            ]))->save();
 
             return true;
         }
 
         return false;
-    }
-
-    /**
-     * @param $book Books
-     */
-    public function updateTags($book){
-
     }
 
     /**
