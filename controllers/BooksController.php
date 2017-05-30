@@ -85,6 +85,13 @@ class BooksController extends Controller
         ]);
     }
 
+    /**
+     * @param $id
+     * @param null $slug
+     * @return string
+     *
+     * @throws NotFoundHttpException
+     */
     public function actionView($id, $slug = null){
         $book = Books::findOne(['id' => $id]);
 

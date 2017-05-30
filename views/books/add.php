@@ -7,4 +7,4 @@
  *
  * @var $model \app\models\forms\BookForm
  */
-echo \yii\helpers\Html::tag('div', $this->render('bookForm', ['model' => $model]), ['style' => 'margin-top: 70px;']);
+echo \yii\helpers\Html::tag('div', $this->render('bookForm', ['model' => $model]));
