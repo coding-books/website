@@ -39,6 +39,8 @@ class BookForm extends Model
 
     public $photos;
 
+    public $tags;
+
     /**
      * @var UploadedFile
      */
@@ -58,7 +60,7 @@ class BookForm extends Model
             [['id'], 'integer'],
             [['slug', 'language_code', 'title', 'description', 'download_link'], 'string'],
             [['language_code', 'title', 'description', 'book_file'], 'required'],
-            [['categories', 'photos'], 'safe'],
+            [['categories', 'photos', 'tags'], 'safe'],
             [['book_file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'epub, pdf'],
             //[['photos_files'], 'file', 'extensions' => 'png, jpg']
         ];
@@ -117,24 +119,35 @@ class BookForm extends Model
 
         $this->slug = $slug;
 
-        $book = new Books($this->getAttributes(null, ['categories', 'photos', 'book_file', 'photos_files']));
+        $book = new Books($this->getAttributes(null, ['categories', 'photos', 'book_file', 'photos_files', 'tags', 'download_link']));
         $book->creator_id = \Yii::$app->user->id;
 
         if($book->save()){
-            foreach($savedPhotos as $photo){
+            foreach($savedPhotos as $photo) {
                 $bookPhoto = new BooksPhotos([
-                    'book_id'       =>  $book->id,
-                    'language_code' =>  $this->language_code,
-                    'src'           =>  $photo
+                    'book_id' => $book->id,
+                    'language_code' => $this->language_code,
+                    'src' => $photo
                 ]);
 
                 $bookPhoto->save();
+            }
+
+            if($this->tags){
+                $this->updateTags($book);
             }
 
             return true;
         }
 
         return false;
+    }
+
+    /**
+     * @param $book Books
+     */
+    public function updateTags($book){
+
     }
 
     /**

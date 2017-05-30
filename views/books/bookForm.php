@@ -13,8 +13,26 @@ $form = \yii\bootstrap\ActiveForm::begin(['options' => ['enctype' => 'multipart/
 
 echo $form->field($model, 'title').
     $form->field($model, 'language_code')->dropDownList($model->getLanguageCodes()).
-    $form->field($model, 'description').
-    $form->field($model, 'categories').
+    $form->field($model, 'categories[]')->widget(\kartik\select2\Select2::className(), [
+        'language'  => \Yii::$app->language,
+        'data'      => [],
+        'options'   => ['multiple' => true, 'placeholder' => \Yii::t('placeholders', 'Enter some categories for book')],
+        'pluginOptions' => [
+            'tokenSeparators'   =>  [',', ' '],
+            'allowClear'        =>  true
+        ],
+    ]).
+    $form->field($model, 'tags[]')->widget(\kartik\select2\Select2::className(), [
+        'language'  => \Yii::$app->language,
+        'data'      => [],
+        'options'   => ['multiple' => true, 'placeholder' => \Yii::t('placeholders', 'Enter some tags for book')],
+        'pluginOptions' => [
+            'tags'              =>  true,
+            'tokenSeparators'   =>  [',', ' '],
+            'allowClear'        =>  true
+        ],
+    ]).
+    $form->field($model, 'description')->textarea().
     $form->field($model, 'book_file')->fileInput().
     $form->field($model, 'photos_files[]')->fileInput(['multiple' => true, 'accept' => 'image/*']).
     Html::tag('div',
