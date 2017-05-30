@@ -21,6 +21,7 @@ use Yii;
  * @property BooksViews[] $booksViews
  * @property BooksAuthors[] $authors
  * @property BooksLinks[] $booksLinks
+ * @property BooksTags[] $booksTags
  * @property \dektrium\user\models\User $booksCreator
  */
 class Books extends \yii\db\ActiveRecord

@@ -27,7 +27,7 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
                         <li><i class="fa fa-pencil-square-o"></i><strong> <?=\Yii::t('books', 'Author')?>:</strong> <?php //Html::encode($book->authors) ?></li>
                         <li><i class="fa fa-clock-o"></i><strong> <?=\Yii::t('books', 'Posted On')?>:</strong> <?=\Yii::$app->formatter->asDatetime($book->created)?></li>
                     </ul>
-                    <a href="<?= Url::to(['books/view', 'slug' => $book->slug, 'id' => $book->id]) ?>" class="btn btn-xs btn-info" target="_blank">
+                    <a href="<?= Url::to(['books/view', 'slug' => $book->slug, 'id' => $book->id]) ?>" class="btn btn-xs btn-info">
                         <?= Yii::t('books','Read More') ?>
                     </a>
                     <a href="<?= Url::to($book->getDownloadLink()) ?>" class="btn btn-xs btn-success" target="_blank">
