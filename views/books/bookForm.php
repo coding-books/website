@@ -8,6 +8,7 @@
  * @var $model \app\models\forms\BookForm
  */
 use vova07\imperavi\Widget;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 $form = \yii\bootstrap\ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);
@@ -16,7 +17,7 @@ echo $form->field($model, 'title').
     $form->field($model, 'language_code')->dropDownList($model->getLanguageCodes()).
     $form->field($model, 'categories[]')->widget(\kartik\select2\Select2::className(), [
         'language'  => \Yii::$app->language,
-        'data'      => [],
+        'data'      => ArrayHelper::map($categories, 'id', 'tag'),
         'options'   => ['multiple' => true, 'placeholder' => \Yii::t('placeholders', 'Enter some categories for book')],
         'pluginOptions' => [
             'tokenSeparators'   =>  [',', ' '],
@@ -25,7 +26,7 @@ echo $form->field($model, 'title').
     ]).
     $form->field($model, 'tags[]')->widget(\kartik\select2\Select2::className(), [
         'language'  => \Yii::$app->language,
-        'data'      => [],
+        'data'      => ArrayHelper::map($tags, 'id', 'tag'),
         'options'   => ['multiple' => true, 'placeholder' => \Yii::t('placeholders', 'Enter some tags for book')],
         'pluginOptions' => [
             'tags'              =>  true,

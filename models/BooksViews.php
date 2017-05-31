@@ -42,8 +42,8 @@ class BooksViews extends \yii\db\ActiveRecord
     {
         return [
             'book_id' => 'Book ID',
-            'timestamp' => 'Timestamp',
-            'ip' => 'Ip',
+            'timestamp' => Yii::t('models','Timestamp'),
+            'ip' => Yii::t('models','Ip'),
         ];
     }
 

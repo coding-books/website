@@ -46,9 +46,9 @@ class BooksLinks extends \yii\db\ActiveRecord
     {
         return [
             'book_id' => 'Book ID',
-            'language_code' => 'Language Code',
-            'link' => 'Link',
-            'format' => 'Format',
+            'language_code' => Yii::t('models','Language Code'),
+            'link' => Yii::t('models','Link'),
+            'format' => Yii::t('models','Format'),
         ];
     }
 

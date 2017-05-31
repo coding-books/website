@@ -55,11 +55,11 @@ class Books extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'slug' => 'Slug',
-            'language_code' => 'Language Code',
-            'title' => 'Title',
-            'description' => 'Description',
-            'views' => 'Views',
+            'slug' => Yii::t('models','Slug'),
+            'language_code' => Yii::t('models','Language Code'),
+            'title' => Yii::t('models','Title'),
+            'description' => Yii::t('models','Description'),
+            'views' => Yii::t('models','Views'),
         ];
     }
 

@@ -42,7 +42,7 @@ class Categories extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'slug' => 'Slug',
+            'slug' => Yii::t('models','Slug'),
             'parent_id' => 'Parent ID',
         ];
     }

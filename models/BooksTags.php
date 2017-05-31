@@ -40,7 +40,7 @@ class BooksTags extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'tag' => 'Tag',
+            'tag' => Yii::t('models','Tag'),
         ];
     }
 

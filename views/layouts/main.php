@@ -51,10 +51,9 @@ AppAsset::register($this);
                     echo Nav::widget([
                         'options' => ['class' => 'nav navbar-nav navbar-right'],
                         'items' => [
-                            ['label' => 'About', 'url' => ['/site/about']],
                             ['label' => Yii::t('buttons', 'Add book'), 'url' => ['/books/add']],
                             Yii::$app->user->isGuest ? (
-                            ['label' => 'Login', 'url' => ['/user/login']]
+                            ['label' => Yii::t('menu', 'Login'), 'url' => ['/user/login']]
                             ) : (
                                 '<li>'
                                 . Html::beginForm(['/user/logout'], 'post')

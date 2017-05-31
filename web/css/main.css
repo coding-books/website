@@ -64,7 +64,7 @@ a {
     -moz-transition: 300ms;
     -o-transition: 300ms;
     transition: 300ms;
-    color: #fc7700;
+    color: #43484E;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -283,6 +283,8 @@ h1, h2, h3, h4, h5, h6 {
 
 #navigation .navbar-inverse .navbar-brand {
     color: #9d9d9d;
+    margin-top: 5px;
+    background-color: #fff;
 }
 
 #navigation .navbar-nav.navbar-right li {
@@ -292,7 +294,8 @@ h1, h2, h3, h4, h5, h6 {
 
 #navigation .navbar-toggle {
     margin-top: 20px;
-    background-color: #333;
+    background-color: #9d9d9d;
+    border: #000;
 }
 
 #navigation .navbar-brand h1 {
@@ -305,7 +308,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #navigation .navbar-nav.navbar-right {
-    margin-top: 13px;
+    margin-top: 15px;
 }
 
 .navbar-brand {
@@ -526,7 +529,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .about-us .title {
-    margin-top: 0;
+    margin-top: 20px;
     margin-bottom: 25px;
 }
 
@@ -1095,8 +1098,9 @@ h1, h2, h3, h4, h5, h6 {
     -moz-transition: all 1s ease 0s;
     -webkit-transition: all 1s ease 0s;
     -o-transition: all 1s ease 0s;
-    -webkit-box-shadow: 0 2px 0 0 #ddd;
-    box-shadow: 0 2px 0 0 #ddd;
+    -webkit-box-shadow:2px 2px 2px 2px #ddd;
+    box-shadow: 2px 2px 2px 2px #ddd;
+    width: 100%;
 }
 
 .single-blog:hover.single-blog h2 {
@@ -1115,6 +1119,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .single-blog img {
     width: 100%;
+    max-height: 225px;
 }
 
 .single-blog h2 {
@@ -1133,9 +1138,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .single-blog ul li {
-    border-right: 2px solid #999999;
     float: left;
-    line-height: 10px;
+    line-height: 14px;
     list-style: none;
     margin-right: 10px;
     padding-right: 10px;
@@ -1339,9 +1343,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 25px 0;
     color: #43484E;
     font-size: 16px;
-    position: absolute;
-    bottom: 0;
-    margin-top: 1px;
+    height: 60px;
 }
 
 #footer p {
@@ -1460,6 +1462,10 @@ h1, h2, h3, h4, h5, h6 {
 /*==================================
 ====== Portfolio Hover effect=======
 ====================================*/
+
+img {
+    width: 100%;
+}
 
 .efffect img {
     -webkit-transform: scaleY(1);

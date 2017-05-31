@@ -44,7 +44,7 @@ class BooksPhotos extends \yii\db\ActiveRecord
     {
         return [
             'book_id' => 'Book ID',
-            'language_code' => 'Language Code',
+            'language_code' => Yii::t('models','Language Code'),
             'src' => 'Src',
         ];
     }

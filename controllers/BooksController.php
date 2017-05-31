@@ -3,6 +3,9 @@
 namespace app\controllers;
 
 use app\models\Books;
+use app\models\BooksCategories;
+use app\models\BooksTags;
+use app\models\Categories;
 use app\models\forms\BookForm;
 use yii\filters\AccessControl;
 use yii\helpers\Html;
@@ -77,7 +80,9 @@ class BooksController extends Controller
         }
 
         return $this->render('add', [
-            'model' =>  $model
+            'model' =>  $model,
+            'tags' => BooksTags::find()->all(),
+            'categories' => Categories::find()->all()
         ]);
     }
 

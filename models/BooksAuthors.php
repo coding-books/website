@@ -39,7 +39,7 @@ class BooksAuthors extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => Yii::t('models','Name'),
         ];
     }
 
