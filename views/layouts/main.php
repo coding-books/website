@@ -18,7 +18,6 @@ $parallaxImg = Yii::getAlias('@web') . '/images/parallax.jpg';
 $styles = <<<CSS
 .parallax-section {
     background-image: url("$parallaxImg");
-    /* Set a specific height */
     height: 250px; 
 }
 CSS;
@@ -86,7 +85,7 @@ $this->registerCss($styles);
 <section>
     <?php if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id == 'index') {?>
         <div class="parallax-section">
-            <div class="row text-center clearfix">
+            <div class="text-center clearfix">
                 <div id="search-box" class="search-box col-md-6 col-md-offset-3">
                     <div class="input-group search-group">
                         <input type="text" class="form-control name-field" placeholder="<?= Yii::t('books', 'Search books') ?>">
