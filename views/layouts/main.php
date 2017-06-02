@@ -12,6 +12,19 @@ use app\assets\AppAsset;
 
 
 AppAsset::register($this);
+
+$parallaxImg = Yii::getAlias('@web') . '/images/parallax.jpg';
+
+$styles = <<<CSS
+.parallax-section {
+    background-image: url("$parallaxImg");
+    /* Set a specific height */
+    height: 250px; 
+}
+CSS;
+
+
+$this->registerCss($styles);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -37,14 +50,7 @@ AppAsset::register($this);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                 </button>
-               <?php
-//                   NavBar::begin([
-//                       'brandLabel' =>  Yii::$app->name ,
-//                       'brandUrl' => Yii::$app->homeUrl,
-//                   ]);
-               ?>
                 <a class="navbar-brand" href="<?= Yii::$app->homeUrl ?>" ><h1><?= Yii::$app->name  ?></h1></a>
-
             </div>
             <div class="collapse navbar-collapse">
                     <?php
@@ -78,6 +84,21 @@ AppAsset::register($this);
 
 
 <section>
+    <?php if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id == 'index') {?>
+        <div class="parallax-section">
+            <div class="row text-center clearfix">
+                <div id="search-box" class="search-box col-md-6 col-md-offset-3">
+                    <div class="input-group search-group">
+                        <input type="text" class="form-control name-field" placeholder="<?= Yii::t('books', 'Search books') ?>">
+                        <a class="btn btn-default slider-btn animated bounceInUp input-group-addon" href="#">
+                            <?= Yii::t('books', 'Search') ?>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
     <div class="container">
         <?= $content ?>
     </div>

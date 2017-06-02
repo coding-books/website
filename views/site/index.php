@@ -10,12 +10,41 @@ use yii\helpers\Url;
 
 $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['appName' => \Yii::$app->name]);
 ?>
-
-<div class="row text-center clearfix">
-   <h1></h1>
-</div>
-<div class="row">
-    <?php foreach ($books as $book){ ?>
+<div class="row clearfix text-center">
+    <h2 class="title-one">
+        <?= Yii::t('books', 'Popular Books') ?>
+    </h2>
+    <div id="books-categories">
+        <ul class="portfolio-filter">
+            <li>
+                <a class="btn btn-default active" href="#" data-filter="*">
+                    <?= Yii::t('categories', 'Popular') ?>
+                </a>
+            </li>
+            <li>
+                <a class="btn btn-default" href="#" data-filter=".html">
+                    <?= Yii::t('categories', 'Novelties') ?>
+                </a>
+            </li>
+            <li>
+                <a class="btn btn-default" href="#" data-filter=".wordpress">
+                    <?= Yii::t('categories', 'OOP') ?>
+                </a>
+            </li>
+            <li>
+                <a class="btn btn-default" href="#" data-filter=".joomla">
+                    <?= Yii::t('categories', 'GoF') ?>
+                </a>
+            </li>
+            <li>
+                <a class="btn btn-default" href="#" data-filter=".megento">
+                    <?= Yii::t('categories', 'Web') ?>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="books-box">
+        <?php foreach ($books as $book){ ?>
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="single-blog row">
                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -58,6 +87,6 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
             </div>
         </div>
     <?php } ?>
-
+    </div>
 </div>
 
