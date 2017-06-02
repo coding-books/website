@@ -34,7 +34,7 @@
 
 html,
 body {
-    height: 100%;
+    height: 100% !important;
 }
 
 body {
@@ -1585,7 +1585,7 @@ img {
 }
 
 #search-box.search-box {
-    margin-top: 160px
+    margin-top: 160px;
 }
 
 .search-group {
@@ -1601,4 +1601,8 @@ img {
 
 body > section > div:first-child:not(.parallax-section) {
     margin-top: 80px;
+}
+
+body section {
+    min-height: 78%;
 }

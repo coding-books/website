@@ -79,6 +79,7 @@ $this->registerCss($styles);
             </div>
         </div>
     </div><!--/navbar-->
+    <div class="clearfix"></div>
 </header>
 
 
@@ -86,7 +87,7 @@ $this->registerCss($styles);
     <?php if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id == 'index') {?>
         <div class="parallax-section">
             <div class="text-center clearfix">
-                <div id="search-box" class="search-box col-md-6 col-md-offset-3">
+                <div id="search-box" class="search-box col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
                     <div class="input-group search-group">
                         <input type="text" class="form-control name-field" placeholder="<?= Yii::t('books', 'Search books') ?>">
                         <a class="btn btn-default slider-btn animated bounceInUp input-group-addon" href="#">
