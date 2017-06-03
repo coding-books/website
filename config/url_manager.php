@@ -10,5 +10,6 @@ return [
     'showScriptName' => false,
     'rules' => [
         '<controller:(books)>/<action:(view)>/<id>-<slug>' => '<controller>/<action>',
+        '<controller:(books)>/<action:(edit)>/<id>' => '<controller>/<action>',
     ],
 ];

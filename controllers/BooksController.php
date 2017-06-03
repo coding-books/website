@@ -3,9 +3,7 @@
 namespace app\controllers;
 
 use app\models\Books;
-use app\models\BooksCategories;
 use app\models\BooksTags;
-use app\models\Categories;
 use app\models\forms\BookForm;
 use yii\filters\AccessControl;
 use yii\helpers\Html;
@@ -81,8 +79,39 @@ class BooksController extends Controller
 
         return $this->render('add', [
             'model' =>  $model,
-            'tags' => BooksTags::find()->all(),
-            'categories' => Categories::find()->all()
+            'tags' => BooksTags::find()->all()
+        ]);
+    }
+
+    /**
+     * Edit books action
+     *
+     * @return string
+     */
+    public function actionEdit(){
+        $model = new BookForm();
+
+        if(\Yii::$app->request->post($model->formName()) && $model->load(\Yii::$app->request->post())){
+            if($model->validate()){
+                if($model->save()){
+                    \Yii::$app->session->addFlash('success', \Yii::t('messages', 'Book {title} successfully added!', ['title' => $model->title]));
+                }else{
+                    \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Oops! Some wrong in our part'));
+                }
+            }else{
+                $errors = null;
+
+                foreach($model->getErrors() as $error){
+                    $errors .= Html::tag('br').array_shift($error);
+                }
+
+                \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Form have errors: {fields}', ['fields' => $errors]));
+            }
+        }
+
+        return $this->render('add', [
+            'model' =>  $model,
+            'tags' => BooksTags::find()->all()
         ]);
     }
 

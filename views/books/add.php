@@ -9,6 +9,5 @@
  */
 echo \yii\helpers\Html::tag('div', $this->render('bookForm', [
     'model' => $model,
-    'tags' => $tags,
-    'categories' => $categories
+    'tags' => $tags
 ]));

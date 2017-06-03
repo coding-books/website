@@ -10,8 +10,8 @@ git clone git@github.com:coding-books/website.git cobooks
 composer update
 
 #run migrations
-php yii migrate/up
 php yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations
 php yii migrate/up --migrationPath=@yii/rbac/migrations
 php yii migrate --migrationPath=@Zelenin/yii/modules/I18n/migrations
+php yii migrate/up
 ```

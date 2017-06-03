@@ -39,8 +39,6 @@ class BookForm extends Model
 
     public $download_link;
 
-    public $categories;
-
     public $photos;
 
     public $tags;
@@ -64,7 +62,7 @@ class BookForm extends Model
             [['id'], 'integer'],
             [['slug', 'language_code', 'title', 'description', 'download_link'], 'string'],
             [['language_code', 'title', 'description', 'book_file'], 'required'],
-            [['categories', 'photos', 'tags'], 'safe'],
+            [['photos', 'tags'], 'safe'],
             [['book_file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'epub, pdf'],
             //[['photos_files'], 'file', 'extensions' => 'png, jpg']
         ];
@@ -123,7 +121,7 @@ class BookForm extends Model
 
         $this->slug = $slug;
 
-        $book = new Books($this->getAttributes(null, ['categories', 'photos', 'book_file', 'photos_files', 'tags', 'download_link']));
+        $book = new Books($this->getAttributes(null, ['photos', 'book_file', 'photos_files', 'tags', 'download_link']));
         $book->creator_id = \Yii::$app->user->id;
 
         if($book->save()){

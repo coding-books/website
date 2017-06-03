@@ -1606,3 +1606,11 @@ body > section > div:first-child:not(.parallax-section) {
 body section {
     min-height: 78%;
 }
+
+.button-actions {
+    margin-bottom: 10px;
+}
+
+.post-meta li {
+    width: 100%;
+}

@@ -59,6 +59,14 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
                                 <?= Html::encode($book->title) ?>
                             </h4>
                         </a>
+                        <div class="button-actions">
+                            <a href="<?= Url::to(['books/view', 'slug' => $book->slug, 'id' => $book->id]) ?>" class="btn btn-xs btn-info">
+                                <?= Yii::t('books','Read More') ?>
+                            </a>
+                            <a href="<?= Url::to($book->getDownloadLink()) ?>" class="btn btn-xs btn-success" target="_blank">
+                                <?= Yii::t('books','Download') ?>
+                            </a>
+                        </div>
                         <ul class="post-meta">
                             <!--<li>
                             <i class="fa fa-pencil-square-o"></i><strong>
@@ -74,14 +82,6 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
                                 <?= \Yii::$app->formatter->asDate($book->created, 'medium') ?>
                             </li>
                         </ul>
-                    </div>
-                    <div class="button-actions">
-                        <a href="<?= Url::to(['books/view', 'slug' => $book->slug, 'id' => $book->id]) ?>" class="btn btn-xs btn-info">
-                            <?= Yii::t('books','Read More') ?>
-                        </a>
-                        <a href="<?= Url::to($book->getDownloadLink()) ?>" class="btn btn-xs btn-success" target="_blank">
-                            <?= Yii::t('books','Download') ?>
-                        </a>
                     </div>
                 </div>
             </div>
