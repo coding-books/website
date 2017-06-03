@@ -53,23 +53,32 @@ $this->registerCss($styles);
             </div>
             <div class="collapse navbar-collapse">
                     <?php
+                    $menuItems = '';
+
+                    if (!Yii::$app->user->isGuest) {
+                        $menuItems = [
+                            'label' => Yii::$app->user->identity->username,
+                            'items' => [
+                                Yii::$app->user->identity->isAdmin ? ['label' => 'Users', 'url' => ['/user/admin']] : '',
+                                ['label' => 'Translations', 'url' => ['/translations']],
+                                [
+                                    'label' => 'Logout',
+                                    'url' => ['/user/logout'],
+                                    'linkOptions' => ['data-method' => 'post']
+                                ]
+                            ],
+                        ];
+                    }
+
+                    if (Yii::$app->user->isGuest) {
+                        $menuItems = ['label' => Yii::t('menu', 'Login'), 'url' => ['/user/login']];
+                    }
+
                     echo Nav::widget([
                         'options' => ['class' => 'nav navbar-nav navbar-right'],
                         'items' => [
                             ['label' => Yii::t('buttons', 'Add book'), 'url' => ['/books/add']],
-                            Yii::$app->user->isGuest ? (
-                            ['label' => Yii::t('menu', 'Login'), 'url' => ['/user/login']]
-                            ) : (
-                                '<li>'
-                                . Html::beginForm(['/user/logout'], 'post')
-                                . Html::submitButton(
-                                    'Logout (' . Yii::$app->user->identity->username . ')',
-                                    ['class' => 'btn btn-link logout']
-                                )
-                                . Html::endForm()
-                                . '</li>'
-                            )
-                            ,
+                            $menuItems,
                             '<li> ' . \app\components\widgets\language\LanguageWidget::widget(['cssClass' => 'language-widget']) . '</li>'
                         ]
                     ]);

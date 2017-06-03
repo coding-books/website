@@ -12,6 +12,7 @@ use Yii;
  *
  * @property Books $book
  * @property BooksTags $book0
+ * @property BooksTags $tag
  */
 class BooksTagsRef extends \yii\db\ActiveRecord
 {
@@ -58,8 +59,8 @@ class BooksTagsRef extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getBook0()
+    public function getTag()
     {
-        return $this->hasOne(BooksTags::className(), ['id' => 'book_id']);
+        return $this->hasOne(BooksTags::className(), ['id' => 'tag_id']);
     }
 }

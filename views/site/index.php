@@ -66,6 +66,11 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
                             <a href="<?= Url::to($book->getDownloadLink()) ?>" class="btn btn-xs btn-success" target="_blank">
                                 <?= Yii::t('books','Download') ?>
                             </a>
+                            <?php if (Yii::$app->user->can('editBook')) {?>
+                                <a href="<?= Url::to(['books/edit', 'id' => $book->id])?>" class="btn btn-xs btn-primary" target="_blank">
+                                    <?= Yii::t('books','Edit') ?>
+                                </a>
+                            <?php } ?>
                         </div>
                         <ul class="post-meta">
                             <!--<li>

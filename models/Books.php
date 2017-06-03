@@ -20,7 +20,7 @@ use Yii;
  * @property BooksViews[] $booksViews
  * @property BooksAuthors[] $authors
  * @property BooksLinks[] $booksLinks
- * @property BooksTags[] $booksTags
+ * @property BooksTagsRef[] $booksTags
  * @property \dektrium\user\models\User $booksCreator
  */
 class Books extends \yii\db\ActiveRecord
@@ -101,8 +101,11 @@ class Books extends \yii\db\ActiveRecord
         return $this->hasMany(BooksLinks::className(), ['book_id' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getBooksTags(){
-        //return $this->hasMany(BooksTags::className(), [''])
+        return $this->hasMany(BooksTagsRef::className(), ['book_id' => 'id']);
     }
 
     public function beforeSave($insert)

@@ -43,6 +43,8 @@ class BookForm extends Model
 
     public $tags;
 
+    public $isNew = true;
+
     /**
      * @var UploadedFile
      */
@@ -61,9 +63,9 @@ class BookForm extends Model
         return [
             [['id'], 'integer'],
             [['slug', 'language_code', 'title', 'description', 'download_link'], 'string'],
-            [['language_code', 'title', 'description', 'book_file'], 'required'],
+            [['language_code', 'title', 'description'], 'required'],
             [['photos', 'tags'], 'safe'],
-            [['book_file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'epub, pdf'],
+            [['book_file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'epub, pdf'],
             //[['photos_files'], 'file', 'extensions' => 'png, jpg']
         ];
     }
@@ -93,18 +95,22 @@ class BookForm extends Model
     }
 
     /**
+     * @param Books $book
+     *
      * @return bool
      */
-    public function save(){
+    public function save(Books $book){
         $savedPhotos = [];
         $slug = BaseInflector::slug($this->title);
         $bookNameWithDir = $this->generateBookNameWithDir($slug);
 
-        if($this->book_file->saveAs(\Yii::getAlias('@webroot') . $bookNameWithDir)){
-            $this->download_link = $bookNameWithDir;
-        }else{
-            $this->addError('book_file', \Yii::t('errors', 'Error with file uploading!'));
-            return false;
+        if (!empty($this->book_file)) {
+            if($this->book_file->saveAs(\Yii::getAlias('@webroot') . $bookNameWithDir)){
+                $this->download_link = $bookNameWithDir;
+            }else{
+                $this->addError('book_file', \Yii::t('errors', 'Error with file uploading!'));
+                return false;
+            }
         }
 
         if(!empty($this->photos_files) && is_array($this->photos_files)){
@@ -121,18 +127,21 @@ class BookForm extends Model
 
         $this->slug = $slug;
 
-        $book = new Books($this->getAttributes(null, ['photos', 'book_file', 'photos_files', 'tags', 'download_link']));
+        $book->setAttributes($this->getAttributes(null, ['id', 'photos', 'book_file', 'photos_files', 'tags', 'download_link']));
+
         $book->creator_id = \Yii::$app->user->id;
 
         if($book->save()){
-            foreach($savedPhotos as $photo) {
-                $bookPhoto = new BooksPhotos([
-                    'book_id' => $book->id,
-                    'language_code' => $this->language_code,
-                    'src' => $photo
-                ]);
+            if (!empty($savedPhotos)) {
+                foreach($savedPhotos as $photo) {
+                    $bookPhoto = new BooksPhotos([
+                        'book_id' => $book->id,
+                        'language_code' => $this->language_code,
+                        'src' => $photo
+                    ]);
 
-                $bookPhoto->save();
+                    $bookPhoto->save();
+                }
             }
 
             $existedTags = ArrayHelper::getColumn(BooksTags::find()->select('tag')->where(['in', 'tag', $this->tags])->all(), 'tag');
@@ -153,17 +162,33 @@ class BookForm extends Model
                 }
             }
 
-            (new BooksLinks([
-                'book_id'       =>  $book->id,
-                'link'          =>  $this->download_link,
-                'language_code' =>  $this->language_code,
-                'format'        =>  $this->book_file->extension
-            ]))->save();
+            if (!empty($this->book_file)) {
+                (new BooksLinks([
+                    'book_id'       =>  $book->id,
+                    'link'          =>  $this->download_link,
+                    'language_code' =>  $this->language_code,
+                    'format'        =>  $this->book_file->extension
+                ]))->save();
+            }
 
             return true;
         }
 
         return false;
+    }
+
+    /**
+     * @param Books $book
+     */
+    public function loadBook (Books $book) {
+        $this->id = $book->id;
+        $this->slug = $book->slug;
+        $this->language_code = $book->language_code;
+        $this->title = $book->title;
+        $this->description = $book->description;
+        $this->download_link = $book->getDownloadLink();
+        $this->photos = $book->getBooksPhotos();
+        $this->tags = $this->setTags($book->booksTags);
     }
 
     /**
@@ -212,6 +237,18 @@ class BookForm extends Model
         }
 
         return true;
+    }
+
+    public function setTags($tags){
+        $newTags = [];
+
+        if (!empty($tags) && is_array($tags)) {
+            foreach ($tags as $tag) {
+                array_push($newTags, $tag->tag_id);
+            }
+        }
+
+        return $newTags;
     }
 
 }

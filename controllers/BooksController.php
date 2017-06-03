@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Books;
 use app\models\BooksTags;
 use app\models\forms\BookForm;
+use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Html;
 use yii\web\Controller;
@@ -58,10 +59,11 @@ class BooksController extends Controller
      */
     public function actionAdd(){
         $model = new BookForm();
+        $book = new Books();
 
         if(\Yii::$app->request->post($model->formName()) && $model->load(\Yii::$app->request->post())){
             if($model->validate()){
-                if($model->save()){
+                if($model->save($book)){
                     \Yii::$app->session->addFlash('success', \Yii::t('messages', 'Book {title} successfully added!', ['title' => $model->title]));
                 }else{
                     \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Oops! Some wrong in our part'));
@@ -90,11 +92,15 @@ class BooksController extends Controller
      */
     public function actionEdit(){
         $model = new BookForm();
+        $model->isNew = false;
+        $book = Books::findOne(Yii::$app->request->get('id'));
+
+        $model->loadBook($book);
 
         if(\Yii::$app->request->post($model->formName()) && $model->load(\Yii::$app->request->post())){
             if($model->validate()){
-                if($model->save()){
-                    \Yii::$app->session->addFlash('success', \Yii::t('messages', 'Book {title} successfully added!', ['title' => $model->title]));
+                if($model->save($book)){
+                    \Yii::$app->session->addFlash('success', \Yii::t('messages', 'Book {title} successfully updated!', ['title' => $model->title]));
                 }else{
                     \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Oops! Some wrong in our part'));
                 }

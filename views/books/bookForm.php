@@ -12,13 +12,17 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 $form = \yii\bootstrap\ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);
+$this->title = Yii::t('books', $model->isNew ? 'Add book' : 'Edit book');
 
 echo $form->field($model, 'title').
     $form->field($model, 'language_code')->dropDownList($model->getLanguageCodes()).
-    $form->field($model, 'tags[]')->widget(\kartik\select2\Select2::className(), [
+    $form->field($model, 'tags')->widget(\kartik\select2\Select2::className(), [
         'language'  => \Yii::$app->language,
         'data'      => ArrayHelper::map($tags, 'id', 'tag'),
-        'options'   => ['multiple' => true, 'placeholder' => \Yii::t('placeholders', 'Enter some tags for book')],
+        'options'   => [
+            'multiple' => true,
+            'placeholder' => \Yii::t('placeholders', 'Enter some tags for book')
+        ],
         'pluginOptions' => [
             'tags'              =>  true,
             'tokenSeparators'   =>  [',', ' '],
@@ -38,7 +42,7 @@ echo $form->field($model, 'title').
     $form->field($model, 'book_file')->fileInput().
     $form->field($model, 'photos_files[]')->fileInput(['multiple' => true, 'accept' => 'image/*']).
     Html::tag('div',
-        Html::button(Yii::t('buttons', 'Add book'), ['class' => 'btn btn-success', 'type' => 'submit']),
+        Html::button(Yii::t('buttons', 'Save'), ['class' => 'btn btn-success', 'type' => 'submit']),
         [
             'class' => 'text-center'
         ]
