@@ -5,6 +5,7 @@ $cookieValidationKey = require(__DIR__ . '/validation_key.php');
 $urlManager = require(__DIR__ . '/url_manager.php');
 $urlLangs = require(__DIR__ . '/url_lang.php');
 $mailer = require(__DIR__ . '/mailer_transport.php');
+$socialClients = require(__DIR__ . '/social_clients.php');
 
 $db = require(__DIR__ . ( YII_DEBUG ? '/db.php' : '/db_prod.php'));
 
@@ -19,7 +20,7 @@ $config = [
         'user' => [
             'class' => 'dektrium\user\Module',
             'enableGeneratingPassword' => true,
-            'confirmWithin' => 86400,
+            'enableConfirmation' => false,
             'cost' => 12,
             'admins' => ['mihail', 'krava', 'kravalg', 'bobroid']
         ],
@@ -50,6 +51,10 @@ $config = [
         'i18n' => [
             'class' => Zelenin\yii\modules\I18n\components\I18N::className(),
             'languages' => $urlLangs
+        ],
+        'authClientCollection' => [
+            'class'   => \yii\authclient\Collection::className(),
+            'clients' => $socialClients,
         ],
         'db' => $db,
         'urlManager' => $urlManager
