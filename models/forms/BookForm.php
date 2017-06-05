@@ -56,6 +56,11 @@ class BookForm extends Model
     public $photos_files;
 
     /**
+     * @var Books
+     */
+    private $bookModel;
+
+    /**
      * @return array
      */
     public function rules()
@@ -78,6 +83,13 @@ class BookForm extends Model
     }
 
     /**
+     * @param Books $bookModel
+     */
+    public function setBookModel (Books $bookModel) {
+        $this->bookModel = $bookModel;
+    }
+
+    /**
      * @param array $data
      * @param null $formName
      * @return bool
@@ -95,11 +107,9 @@ class BookForm extends Model
     }
 
     /**
-     * @param Books $book
-     *
      * @return bool
      */
-    public function save(Books $book){
+    public function save(){
         $savedPhotos = [];
         $slug = BaseInflector::slug($this->title);
         $bookNameWithDir = $this->generateBookNameWithDir($slug);
@@ -127,15 +137,15 @@ class BookForm extends Model
 
         $this->slug = $slug;
 
-        $book->setAttributes($this->getAttributes(null, ['id', 'photos', 'book_file', 'photos_files', 'tags', 'download_link']));
+        $this->bookModel->setAttributes($this->getAttributes(null, ['id', 'photos', 'book_file', 'photos_files', 'tags', 'download_link']));
 
-        $book->creator_id = \Yii::$app->user->id;
+        $this->bookModel->creator_id = \Yii::$app->user->id;
 
-        if($book->save()){
+        if($this->bookModel->save()){
             if (!empty($savedPhotos)) {
                 foreach($savedPhotos as $photo) {
                     $bookPhoto = new BooksPhotos([
-                        'book_id' => $book->id,
+                        'book_id' => $this->bookModel->id,
                         'language_code' => $this->language_code,
                         'src' => $photo
                     ]);
@@ -144,27 +154,15 @@ class BookForm extends Model
                 }
             }
 
-            $existedTags = ArrayHelper::getColumn(BooksTags::find()->select('tag')->where(['in', 'tag', $this->tags])->all(), 'tag');
-
-            if (!empty($this->tags) && is_array($this->tags)) {
-                foreach($this->tags as $tag){
-                    if(!in_array($tag, $existedTags)){
-                        $tag = new BooksTags([
-                            'tag'   =>  $tag
-                        ]);
-
-                        $tag->save();
-                    }else{
-                        $tag = BooksTags::findOne(['tag' => $tag]);
-                    }
-
-                    (new BooksTagsRef(['book_id' => $book->id, 'tag_id' => $tag->id]))->save();
-                }
+            if ($this->isNew) {
+                $this->saveTags();
+            } else {
+                $this->updateTags();
             }
 
             if (!empty($this->book_file)) {
                 (new BooksLinks([
-                    'book_id'       =>  $book->id,
+                    'book_id'       =>  $this->bookModel->id,
                     'link'          =>  $this->download_link,
                     'language_code' =>  $this->language_code,
                     'format'        =>  $this->book_file->extension
@@ -244,11 +242,37 @@ class BookForm extends Model
 
         if (!empty($tags) && is_array($tags)) {
             foreach ($tags as $tag) {
-                array_push($newTags, $tag->tag_id);
+                $newTags[] = $tag->tag_id;
             }
         }
 
         return $newTags;
+    }
+
+    public function saveTags () {
+        $existedTags = ArrayHelper::getColumn(BooksTags::find()->select('id')->where(['in', 'id', $this->tags])->all(), 'id');
+
+        if (!empty($this->tags) && is_array($this->tags)) {
+            foreach($this->tags as $tag){
+                if(!in_array($tag, $existedTags)){
+                    $tag = new BooksTags([
+                        'tag'   =>  $tag
+                    ]);
+
+                    $tag->save();
+                }else{
+                    $tag = BooksTags::findOne(['id' => $tag]);
+                }
+
+                (new BooksTagsRef(['book_id' => $this->bookModel->id, 'tag_id' => $tag->id]))->save();
+            }
+        }
+    }
+
+    public function updateTags () {
+        BooksTagsRef::deleteAllByBookId($this->id);
+
+        $this->saveTags();
     }
 
 }

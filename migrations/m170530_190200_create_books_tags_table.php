@@ -22,7 +22,6 @@ class m170530_190200_create_books_tags_table extends Migration
         ]);
 
         $this->addForeignKey('books_tags_ref-book_id-books-id', 'books_tags_ref', 'book_id', 'books', 'id');
-        $this->addForeignKey('books_tags_ref-tag_id-books_tags-id', 'books_tags_ref', 'book_id', 'books_tags', 'id');
     }
 
     /**
@@ -30,7 +29,6 @@ class m170530_190200_create_books_tags_table extends Migration
      */
     public function down(){
         $this->dropForeignKey('books_tags_ref-book_id-books-id', 'books_tags_ref');
-        $this->dropForeignKey('books_tags_ref-tag_id-books_tags-id', 'books_tags_ref');
         $this->dropTable('books_tags_ref');
         $this->dropTable('books_tags');
     }

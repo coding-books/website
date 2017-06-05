@@ -33,7 +33,6 @@ class BooksTagsRef extends \yii\db\ActiveRecord
             [['book_id', 'tag_id'], 'required'],
             [['book_id', 'tag_id'], 'integer'],
             [['book_id'], 'exist', 'skipOnError' => true, 'targetClass' => Books::className(), 'targetAttribute' => ['book_id' => 'id']],
-            [['book_id'], 'exist', 'skipOnError' => true, 'targetClass' => BooksTags::className(), 'targetAttribute' => ['book_id' => 'id']],
         ];
     }
 
@@ -46,6 +45,18 @@ class BooksTagsRef extends \yii\db\ActiveRecord
             'book_id' => 'Book ID',
             'tag_id' => 'Tag ID',
         ];
+    }
+
+    /**
+     * @param $bookId
+     * @return int
+     */
+    public static function deleteAllByBookId ($bookId) {
+        return Yii::$app
+            ->db
+            ->createCommand()
+            ->delete(self::tableName(), ['book_id' => $bookId])
+            ->execute();
     }
 
     /**

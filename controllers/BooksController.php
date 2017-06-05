@@ -63,7 +63,8 @@ class BooksController extends Controller
 
         if(\Yii::$app->request->post($model->formName()) && $model->load(\Yii::$app->request->post())){
             if($model->validate()){
-                if($model->save($book)){
+                $model->setBookModel($book);
+                if($model->save()){
                     \Yii::$app->session->addFlash('success', \Yii::t('messages', 'Book {title} successfully added!', ['title' => $model->title]));
                 }else{
                     \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Oops! Some wrong in our part'));
@@ -96,10 +97,11 @@ class BooksController extends Controller
         $book = Books::findOne(Yii::$app->request->get('id'));
 
         $model->loadBook($book);
+        $model->setBookModel($book);
 
         if(\Yii::$app->request->post($model->formName()) && $model->load(\Yii::$app->request->post())){
             if($model->validate()){
-                if($model->save($book)){
+                if($model->save()){
                     \Yii::$app->session->addFlash('success', \Yii::t('messages', 'Book {title} successfully updated!', ['title' => $model->title]));
                 }else{
                     \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Oops! Some wrong in our part'));
