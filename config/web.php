@@ -22,7 +22,7 @@ $config = [
             'enableGeneratingPassword' => true,
             'enableConfirmation' => false,
             'cost' => 12,
-            'admins' => ['mihail', 'krava', 'kravalg', 'bobroid']
+            'admins' => ['mihail', 'Kravalg', 'bobroid']
         ],
         'rbac' => 'dektrium\rbac\RbacWebModule',
         'i18n' => Zelenin\yii\modules\I18n\Module::className()
