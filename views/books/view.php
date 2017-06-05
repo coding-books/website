@@ -36,12 +36,12 @@ $this->title .= Yii::t('seo', 'read online & free download programming books');
                         <?= Yii::t('books', 'Read & Download') ?>
                     </a>
                 </li>
-                <li class="">
+                <!--<li class="">
                     <a href="#comments" data-toggle="tab">
                         <i class="fa fa-comments-o"></i>
                         <?= Yii::t('books', 'Comments') ?>
                     </a>
-                </li>
+                </li>-->
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade active in" id="description">
