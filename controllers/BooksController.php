@@ -22,12 +22,22 @@ class BooksController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['add'],
+                'only' => ['add', 'edit', 'publish'],
                 'rules' => [
                     [
                         'actions' => ['add'],
                         'allow' => true,
                         'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['edit'],
+                        'allow' => true,
+                        'roles' => ['editBook'],
+                    ],
+                    [
+                        'actions' => ['publish'],
+                        'allow' => true,
+                        'roles' => ['publishBook'],
                     ],
                 ],
             ],
