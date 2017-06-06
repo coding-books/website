@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\models\Books;
 use kartik\growl\Growl;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -59,10 +60,23 @@ $this->registerCss($styles);
                         $menuItems = [
                             'label' => Yii::$app->user->identity->username,
                             'items' => [
-                                Yii::$app->user->identity->isAdmin ? ['label' => 'Users', 'url' => ['/user/admin']] : '',
-                                ['label' => 'Translations', 'url' => ['/translations']],
                                 [
-                                    'label' => 'Logout',
+                                    'label' => Yii::t('menu', 'Users'),
+                                    'url' => ['/user/admin'],
+                                    'visible' => Yii::$app->user->identity->isAdmin
+                                ],
+                                [
+                                    'label' => Yii::t('menu','Translations'),
+                                    'url' => ['/translations'],
+                                    'visible' => Yii::$app->user->can('translateSite')
+                                ],
+                                [
+                                    'label' => Yii::t('menu','Publish books ({count})', ['count' => Books::getInactiveCount()]),
+                                    'url' => ['/books/publish'],
+                                    'visible' => Yii::$app->user->can('publishBook')
+                                ],
+                                [
+                                    'label' => Yii::t('menu','Logout'),
                                     'url' => ['/user/logout'],
                                     'linkOptions' => ['data-method' => 'post']
                                 ]

@@ -15,6 +15,7 @@ use Yii;
  * @property int $views
  * @property int $created
  * @property int $creator_id
+ * @property int $published
  *
  * @property BooksPhotos[] $booksPhotos
  * @property BooksViews[] $booksViews
@@ -41,7 +42,7 @@ class Books extends \yii\db\ActiveRecord
         return [
             [['slug', 'language_code'], 'required'],
             [['title', 'description'], 'string'],
-            [['views', 'created', 'creator_id'], 'integer'],
+            [['views', 'created', 'creator_id', 'published'], 'integer'],
             [['slug'], 'string', 'max' => 255],
             [['language_code'], 'string', 'max' => 2],
         ];
@@ -60,6 +61,31 @@ class Books extends \yii\db\ActiveRecord
             'description' => Yii::t('models','Description'),
             'views' => Yii::t('models','Views'),
         ];
+    }
+
+    /**
+     * @return static[]
+     */
+    public static function getAll () {
+        return self::findAll(['published' => 1]);
+    }
+
+    /**
+     * @return static[]
+     */
+    public static function getInactive () {
+        return self::findAll(['published' => 0]);
+    }
+
+    /**
+     * @return int|string
+     */
+    public static function getInactiveCount () {
+        return self::find()->where(['published' => 0])->count();
+    }
+
+    public function publish () {
+        $this->published = 1;
     }
 
     /**

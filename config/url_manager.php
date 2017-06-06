@@ -11,5 +11,6 @@ return [
     'rules' => [
         '<controller:(books)>/<action:(view)>/<id>-<slug>' => '<controller>/<action>',
         '<controller:(books)>/<action:(edit)>/<id>' => '<controller>/<action>',
+        '<controller:(books)>/<action:(publish)>/<id>' => '<controller>/<action>',
     ],
 ];

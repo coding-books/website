@@ -142,4 +142,30 @@ class BooksController extends Controller
             'book'  =>  $book
         ]);
     }
+
+    public function actionPublish () {
+
+        if (Yii::$app->request->isGet) {
+            $id = intval(Yii::$app->request->get('id'));
+
+            if (!empty($id)) {
+                $book = Books::findOne($id);
+
+                if (!empty($book)) {
+                    $book->publish();
+                    if ($book->save()) {
+                        Yii::$app->session->addFlash('success', \Yii::t('messages', 'Book {title} successfully published!', ['title' => $book->title]));
+                    } else {
+                        Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Something went wrong!', ['title' => $book->title]));
+                    }
+                }
+
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+        }
+
+        return $this->render('publish', [
+            'books'  =>  Books::getInactive()
+        ]);
+    }
 }
