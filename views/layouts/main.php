@@ -21,6 +21,10 @@ $styles = <<<CSS
     background-image: url("$parallaxImg");
     height: 250px; 
 }
+
+#search-field {
+    height: 50px;
+}
 CSS;
 
 
@@ -112,7 +116,7 @@ $this->registerCss($styles);
             <div class="text-center clearfix">
                 <div id="search-box" class="search-box col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
                     <div class="input-group search-group">
-                        <input type="text" class="form-control name-field" placeholder="<?= Yii::t('books', 'Search books') ?>">
+                        <input id="search-field" type="text" class="form-control" placeholder="<?= Yii::t('books', 'Search books') ?>">
                         <a class="btn btn-default slider-btn animated bounceInUp input-group-addon" href="#">
                             <?= Yii::t('books', 'Search') ?>
                         </a>
