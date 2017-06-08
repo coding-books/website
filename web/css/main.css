@@ -1215,7 +1215,7 @@ h1, h2, h3, h4, h5, h6 {
 .contact-address {
     background-color: #fff;
     height: 390px;
-    padding-top: 85px
+    padding-top: 30px
 }
 
 .contact-address .social-icons a i {
@@ -1266,7 +1266,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .contact-address p span {
     color: #fc7700;
+    font-size: 40px;
+}
 
+.contact-address .slider-btn {
+    font-weight: 400;
 }
 
 #contact-form-section {

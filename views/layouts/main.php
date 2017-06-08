@@ -7,9 +7,8 @@ use app\models\Books;
 use kartik\growl\Growl;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\helpers\Url;
 
 
 AppAsset::register($this);
@@ -25,10 +24,36 @@ $styles = <<<CSS
 #search-field {
     height: 50px;
 }
+
+.search-group .btn {
+    font-weight: 400;
+}
 CSS;
 
 
 $this->registerCss($styles);
+
+$searchUrl = Url::to(['/search']);
+
+$js = <<<JS
+    function search () {
+        location.href = '$searchUrl/' + $('#search-field').val();
+    }
+    
+    $('#search-button').on('click', function () {
+        search();
+    });
+    
+    $('#search-field').keyup(function(event){
+        if(event.keyCode == 13){
+            search();
+        }
+    });
+JS;
+
+
+$this->registerJs($js);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -111,15 +136,15 @@ $this->registerCss($styles);
 
 
 <section>
-    <?php if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id == 'index') {?>
+    <?php if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id == 'index' || Yii::$app->controller->action->id == 'search') {?>
         <div class="parallax-section">
             <div class="text-center clearfix">
                 <div id="search-box" class="search-box col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
                     <div class="input-group search-group">
-                        <input id="search-field" type="text" class="form-control" placeholder="<?= Yii::t('books', 'Search books') ?>">
-                        <a class="btn btn-default slider-btn animated bounceInUp input-group-addon" href="#">
+                        <input id="search-field" type="text" class="form-control" placeholder="<?= Yii::t('books', 'Search books') ?>" value="<?= Html::encode(strip_tags(trim(Yii::$app->request->get('searchQuery')))) ?>">
+                        <div id="search-button" class="btn btn-default slider-btn animated bounceInUp input-group-addon">
                             <?= Yii::t('books', 'Search') ?>
-                        </a>
+                        </div>
                     </div>
                     <div class="clearfix"></div>
                 </div>

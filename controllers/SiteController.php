@@ -2,15 +2,13 @@
 
 namespace app\controllers;
 
+use app\models\book\BookSearch;
 use app\models\Books;
-use app\models\forms\BookForm;
 use Yii;
 use yii\filters\AccessControl;
-use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -92,5 +90,24 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionSearch()
+    {
+        $searchString = strip_tags(trim(Yii::$app->request->get('searchQuery')));
+
+        $searchModel = new BookSearch();
+        $books = $searchModel->search($searchString);
+
+        return $this->render('search', [
+            'books' => $books,
+            'searchString' => $searchString,
+            'search' => true
+        ]);
     }
 }
