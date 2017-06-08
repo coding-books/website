@@ -40,7 +40,7 @@ $js = <<<JS
         location.href = '$searchUrl/' + $('#search-field').val();
     }
     
-    $('#search-button').on('click', function () {
+    $('#search-button, #search-button-mobile').on('click', function () {
         search();
     });
     
@@ -144,6 +144,9 @@ $this->registerJs($js);
                         <input id="search-field" type="text" class="form-control" placeholder="<?= Yii::t('books', 'Search books') ?>" value="<?= Html::encode(strip_tags(trim(Yii::$app->request->get('searchQuery')))) ?>">
                         <div id="search-button" class="btn btn-default slider-btn animated bounceInUp input-group-addon">
                             <?= Yii::t('books', 'Search') ?>
+                        </div>
+                        <div id="search-button-mobile" class="btn btn-default slider-btn animated bounceInUp input-group-addon">
+                            <i class="fa fa-search"></i>
                         </div>
                     </div>
                     <div class="clearfix"></div>
