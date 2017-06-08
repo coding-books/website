@@ -18,12 +18,12 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
         <ul class="portfolio-filter">
             <li>
                 <a class="btn btn-default active" href="#" data-filter="*">
-                    <?= Yii::t('categories', 'Popular') ?>
+                    <?= Yii::t('categories', 'Novelties') ?>
                 </a>
             </li>
-            <li>
+            <!--<li>
                 <a class="btn btn-default" href="#" data-filter=".html">
-                    <?= Yii::t('categories', 'Novelties') ?>
+                    <?= Yii::t('categories', 'Popular') ?>
                 </a>
             </li>
             <li>
@@ -40,7 +40,7 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
                 <a class="btn btn-default" href="#" data-filter=".megento">
                     <?= Yii::t('categories', 'Web') ?>
                 </a>
-            </li>
+            </li>-->
         </ul>
     </div>
     <div class="books-box">

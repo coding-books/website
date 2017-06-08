@@ -59,7 +59,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index', [
-            'books' => Books::getAll(),
+            'books' => Books::find()->orderBy(['created' => SORT_DESC])->limit(6)->all(),
             'search' => true
         ]);
     }
