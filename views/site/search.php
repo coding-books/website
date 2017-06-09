@@ -56,6 +56,9 @@ $this->title = Yii::t('seo','Find Your Favourite Book | {appName}', ['appName' =
                                 <a href="<?= Url::to(['books/view', 'slug' => $book->slug, 'id' => $book->id]) ?>">
                                     <h4>
                                         <?= Html::encode($book->title) ?>
+                                        <span class="badge" title="<?= Yii::t('books','The language of the book') ?>">
+                                            <?= Html::encode(strtoupper($book->language_code)) ?>
+                                        </span>
                                     </h4>
                                 </a>
                                 <div class="button-actions">

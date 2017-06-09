@@ -57,6 +57,9 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
                         <a href="<?= Url::to(['books/view', 'slug' => $book->slug, 'id' => $book->id]) ?>">
                             <h4>
                                 <?= Html::encode($book->title) ?>
+                                <span class="badge" title="<?= Yii::t('books','The language of the book') ?>">
+                                    <?= Html::encode(strtoupper($book->language_code)) ?>
+                                </span>
                             </h4>
                         </a>
                         <div class="button-actions">
@@ -73,11 +76,6 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
                             <?php } ?>
                         </div>
                         <ul class="post-meta">
-                            <!--<li>
-                            <i class="fa fa-pencil-square-o"></i><strong>
-                                <?= \Yii::t('books', 'Author') ?>:</strong>
-                            <?php //Html::encode($book->authors) ?>
-                        </li>-->
                             <li>
                                 <i class="fa fa-clock-o"></i>
                                 <strong>
