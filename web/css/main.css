@@ -1179,11 +1179,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .single-blog .btn-primary {
-    text-transform: uppercase;
     border: 1px solid #fc7700;
     color: #fff;
     background-color: #fc7700;
-    border-color: #fc7700;
 }
 
 .single-blog:hover.single-blog .btn-primary:hover {
