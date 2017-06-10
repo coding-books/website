@@ -20,7 +20,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/main.css?22',
         'css/prettyPhoto.css',
-        'css/responsive.css',
+        'css/responsive.css?1',
     ];
     public $js = [
         'js/jquery.isotope.min.js',

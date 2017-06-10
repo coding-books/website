@@ -58,7 +58,7 @@
 		font-size:16px;
 		height:45px;
 		line-height:45px;
-		width:150px
+		width: auto;
 	}
 	.title-one{
 		font-size:24px
@@ -152,7 +152,7 @@
 		font-size:16px;
 		height:45px;
 		line-height:45px;
-		width:150px
+		width: auto;
 	}
 	.title-one{
 		font-size:24px
