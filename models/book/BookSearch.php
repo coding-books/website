@@ -45,22 +45,28 @@ class BookSearch extends Model
 
         $tags = BooksTags::find();
         $tags->where(['like', 'tag', $searchQuery]);
-        $tag = $tags->one();
+        $booksTags = $tags->all();
 
-        if (!empty($tag)) {
-            $booksTagRef = $tag->booksTagsRefs;
+        if (!empty($booksTags) && is_array($booksTags)) {
+            $searchedBooksByTags = [];
 
-            if (isset($booksTagRef) && !empty($booksTagRef)) {
-                $ids = [];
+            foreach ($booksTags as $tag) {
+                $booksTagRef = $tag->booksTagsRefs;
 
-                foreach ($booksTagRef as $bookTagRef) {
-                    $ids[] = $bookTagRef->book_id;
+                if (isset($booksTagRef) && !empty($booksTagRef)) {
+                    $ids = [];
+
+                    foreach ($booksTagRef as $bookTagRef) {
+                        $ids[] = $bookTagRef->book_id;
+                    }
+
+                    $booksByTag = Books::find()->where(['in', 'id', implode(',', $ids)])->all();
+
+                    $searchedBooksByTags = array_merge($searchedBooksByTags, $booksByTag);
                 }
-
-                $booksByTag = Books::find()->where(['in', 'id', implode(',', $ids)])->all();
-
-                $searchResults = array_merge($searchResults, $booksByTag);
             }
+
+            $searchResults = array_merge($searchResults, $searchedBooksByTags);
         }
 
         return $searchResults;
