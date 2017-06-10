@@ -1176,11 +1176,14 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
 }
 
+.single-blog .btn {
+    margin-top: 5px;
+}
+
 .single-blog .btn-primary {
     border: 1px solid #fc7700;
     color: #fff;
     background-color: #fc7700;
-    margin-top: 5px;
 }
 
 .single-blog:hover.single-blog .btn-primary:hover {
