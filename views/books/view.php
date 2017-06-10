@@ -10,7 +10,7 @@
 use yii\bootstrap\Html;
 use yii\helpers\Url;
 
-$this->title = Html::encode($book->title) . ' - ';
+$this->title = $book->title . ' - ';
 $this->title .= Yii::t('seo', 'read online & free download programming books');
 ?>
 
