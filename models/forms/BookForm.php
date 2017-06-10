@@ -125,7 +125,9 @@ class BookForm extends Model
     public function save(){
         $savedPhotos = [];
         $slug = BaseInflector::slug($this->title);
-        $bookNameWithDir = $this->generateBookNameWithDir($slug);
+        if (!empty($this->book_file)) {
+            $bookNameWithDir = $this->generateBookNameWithDir($slug);
+        }
 
         if (!empty($this->book_file)) {
             if($this->book_file->saveAs(\Yii::getAlias('@webroot') . $bookNameWithDir)){
