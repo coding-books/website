@@ -34,10 +34,13 @@ class BookSearch extends Model
 
         $books = Books::find();
         $books->where(['like', 'title', $searchQuery]);
+        $books->orWhere(['like', 'description', $searchQuery]);
         $books->andWhere(['published' => 1]);
 
-        if (!empty($books->all())) {
+        $searchedBooks = $books->all();
 
+        if (!empty($searchedBooks)) {
+            $searchResults = $searchedBooks;
         }
 
         $tags = BooksTags::find();
