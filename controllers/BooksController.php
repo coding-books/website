@@ -76,6 +76,8 @@ class BooksController extends Controller
                 $model->setBookModel($book);
                 if($model->save()){
                     \Yii::$app->session->addFlash('success', \Yii::t('messages', 'Book {title} successfully added!', ['title' => $model->title]));
+
+                    return $this->redirect(['/']);
                 }else{
                     \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Oops! Some wrong in our part'));
                 }
@@ -113,6 +115,8 @@ class BooksController extends Controller
             if($model->validate()){
                 if($model->save()){
                     \Yii::$app->session->addFlash('success', \Yii::t('messages', 'Book {title} successfully updated!', ['title' => $model->title]));
+
+                    return $this->redirect(['/books/view/', 'id' => $book->id, 'slug' => $book->slug]);
                 }else{
                     \Yii::$app->session->addFlash('danger', \Yii::t('messages', 'Oops! Some wrong in our part'));
                 }
