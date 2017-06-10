@@ -23,6 +23,17 @@ $this->title .= Yii::t('seo', 'read online & free download programming books');
             <h3 class="title">
                 <?= Html::encode($book->title) ?>
             </h3>
+            <div class="tags">
+                <?php if (!empty($book->booksTags) && is_array($book->booksTags)) { ?>
+                    <?php foreach ($book->booksTags as $tagRef) { ?>
+                        <?php if (!empty($tagRef->tag)) { ?>
+                            <a class="label label-info" href="<?= Url::to(['site/search', 'searchQuery' => $tagRef->tag->tag]) ?>" target="_blank">
+                                <?= Html::encode($tagRef->tag->tag) ?>
+                            </a>
+                        <?php } ?>
+                    <?php } ?>
+                <?php } ?>
+            </div>
             <ul class="nav nav-tabs">
                 <li class="active">
                     <a href="#description" data-toggle="tab">

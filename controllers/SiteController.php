@@ -97,9 +97,9 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionSearch()
+    public function actionSearch($searchQuery)
     {
-        $searchString = strip_tags(trim(Yii::$app->request->get('searchQuery')));
+        $searchString = strip_tags(trim($searchQuery));
 
         $searchModel = new BookSearch();
         $books = $searchModel->search($searchString);

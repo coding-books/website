@@ -1645,6 +1645,15 @@ body section {
     width: 100%;
 }
 
+.tags {
+    margin: 10px;
+}
+
+.tags a {
+    margin: 2px;
+    font-weight: 400;
+}
+
 @media screen and (max-width: 400px) { /* Минимум 512 цветов */
     .single-blog {
         margin-left: 10px;
