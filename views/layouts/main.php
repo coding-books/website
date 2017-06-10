@@ -162,14 +162,14 @@ $this->registerJs($js);
     <?= Growl::widget([
         'type' => Growl::TYPE_SUCCESS,
         'icon' => 'glyphicon glyphicon-ok-sign',
-        'title' => 'Note',
+        'title' => Yii::t('notify', 'Note'),
         'showSeparator' => true,
         'body' => Yii::$app->session->getFlash('success')
     ]) ?>
 <?php }else if(\Yii::$app->session->getFlash('danger')){ ?>
     <?= Growl::widget([
         'type' => Growl::TYPE_DANGER,
-        'title' => 'Warning!',
+        'title' => Yii::t('notify', 'Warning'),
         'icon' => 'glyphicon glyphicon-exclamation-sign',
         'body' => \Yii::$app->session->getFlash('danger'),
         'showSeparator' => true
