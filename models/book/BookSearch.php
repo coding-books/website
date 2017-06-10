@@ -52,8 +52,9 @@ class BookSearch extends Model
 
             if (isset($booksTagRef) && !empty($booksTagRef)) {
                 $ids = [];
+
                 foreach ($booksTagRef as $bookTagRef) {
-                    $ids[] = $bookTagRef->book->id;
+                    $ids[] = $bookTagRef->book_id;
                 }
 
                 $booksByTag = Books::find()->where(['in', 'id', implode(',', $ids)])->all();

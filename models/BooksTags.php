@@ -49,6 +49,6 @@ class BooksTags extends \yii\db\ActiveRecord
      */
     public function getBooksTagsRefs()
     {
-        return $this->hasMany(BooksTagsRef::className(), ['book_id' => 'id']);
+        return $this->hasMany(BooksTagsRef::className(), ['tag_id' => 'id']);
     }
 }
