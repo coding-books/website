@@ -33,7 +33,7 @@ $this->title .= Yii::t('seo', 'read online & free download programming books');
                 <li class="">
                     <a href="#download" data-toggle="tab">
                         <i class="fa fa-book"></i>
-                        <?= Yii::t('books', 'Read & Download') ?>
+                        <?= Yii::t('books', 'Read') ?>
                     </a>
                 </li>
                 <!--<li class="">
