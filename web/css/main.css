@@ -1610,7 +1610,8 @@ img {
 }
 
 #search-box.search-box {
-    margin-top: 160px;
+    margin-top: 110px;
+    margin-bottom: 40px;
 }
 
 .search-group {
