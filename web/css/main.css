@@ -1649,6 +1649,8 @@ body section {
 
     #search-box {
         width: 100%;
+        padding-left: 10%;
+        padding-right: 10%;
         margin-left: 0;
         margin-right: 0;
     }
@@ -1656,7 +1658,6 @@ body section {
     #search-button {
         display: none;
     }
-
     #search-button-mobile {
         display: block;
     }

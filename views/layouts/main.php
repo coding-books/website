@@ -23,7 +23,6 @@ $styles = <<<CSS
 
 #search-field {
     height: 50px;
-    border-radius: 0;
 }
 
 .search-group .btn {
