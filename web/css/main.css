@@ -1610,8 +1610,7 @@ img {
 }
 
 #search-box.search-box {
-    margin-top: 110px;
-    margin-bottom: 40px;
+    margin-top: 160px;
 }
 
 .search-group {
@@ -1626,7 +1625,8 @@ img {
 }
 
 body > section > div:first-child:not(.parallax-section) {
-    margin-top: 80px;
+    margin-top: 110px;
+    margin-bottom: 40px;
 }
 
 body section {
