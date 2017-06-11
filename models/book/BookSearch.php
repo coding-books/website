@@ -96,7 +96,13 @@ class BookSearch extends Model
             $countBooksById = [];
 
             foreach ($foundedBooks as $book) {
-                $countBooksById[$book->id]++;
+                $count = 0;
+
+                if (isset($countBooksById[$book->id])) {
+                    $count = $countBooksById[$book->id];
+                }
+
+                $countBooksById[$book->id] = $count++;
             }
 
             arsort($countBooksById);
