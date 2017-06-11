@@ -30,25 +30,44 @@ class BookSearch extends Model
      */
     public function search(string $searchQuery)
     {
-        $searchResults = [];
+        $foundResults = [];
 
+        $searchedBooks = $this->searchBook($searchQuery);
+
+        $searchedBooksByTag = $this->searchByTags($searchQuery);
+
+        $foundResults = array_merge($foundResults, $searchedBooks, $searchedBooksByTag);
+
+        return $this->generateResults($foundResults);
+    }
+
+    /**
+     * @param string $searchQuery
+     *
+     * @return array
+     */
+    public function searchBook (string $searchQuery) : array {
         $books = Books::find();
         $books->where(['like', 'title', $searchQuery]);
         $books->orWhere(['like', 'description', $searchQuery]);
         $books->andWhere(['published' => 1]);
 
-        $searchedBooks = $books->all();
+        return $books->all();
+    }
 
-        if (!empty($searchedBooks)) {
-            $searchResults = $searchedBooks;
-        }
+    /**
+     * @param string $searchQuery
+     *
+     * @return array
+     */
+    public function searchByTags (string $searchQuery) : array {
+        $searchedBooksByTags = [];
 
         $tags = BooksTags::find();
         $tags->where(['like', 'tag', $searchQuery]);
         $booksTags = $tags->all();
 
         if (!empty($booksTags) && is_array($booksTags)) {
-            $searchedBooksByTags = [];
 
             foreach ($booksTags as $tag) {
                 $booksTagRef = $tag->booksTagsRefs;
@@ -60,15 +79,38 @@ class BookSearch extends Model
                         $ids[] = $bookTagRef->book_id;
                     }
 
-                    $booksByTag = Books::find()->where(['in', 'id', implode(',', $ids)])->all();
+                    $booksByTag = Books::find()->where(['id' => $ids])->andWhere(['published' => 1])->all();
 
                     $searchedBooksByTags = array_merge($searchedBooksByTags, $booksByTag);
                 }
             }
-
-            $searchResults = array_merge($searchResults, $searchedBooksByTags);
         }
 
-        return $searchResults;
+        return $searchedBooksByTags;
+    }
+
+    public function generateResults (array $foundedBooks) {
+        $newFoundedBooks = [];
+
+        if (!empty($foundedBooks)) {
+            $countBooksById = [];
+
+            foreach ($foundedBooks as $book) {
+                $countBooksById[$book->id]++;
+            }
+
+            arsort($countBooksById);
+
+            foreach ($countBooksById as $bookId => $count) {
+                foreach ($foundedBooks as $book) {
+                    if ($bookId == $book->id) {
+                        $newFoundedBooks[] = $book;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return $newFoundedBooks;
     }
 }
