@@ -1652,6 +1652,7 @@ body section {
 .tags a {
     margin: 2px;
     font-weight: 400;
+    display: inline-block;
 }
 
 @media screen and (max-width: 400px) { /* Минимум 512 цветов */
