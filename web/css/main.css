@@ -1115,6 +1115,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 10px 2px;
     background-color: #F7F7F7;
     padding: 10px;
+    height: 250px;
     transition: all 1s ease 0s;
     -moz-transition: all 1s ease 0s;
     -webkit-transition: all 1s ease 0s;
