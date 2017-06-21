@@ -37,6 +37,11 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
                             <?= Yii::t('books','Edit') ?>
                         </a>
                     <?php } ?>
+                    <?php if (Yii::$app->user->can('publishBook') && !$model->published) {?>
+                        <a href="<?= Url::to(['books/publish', 'id' => $model->id])?>" class="btn btn-xs btn-success">
+                            <?= Yii::t('books','Publish') ?>
+                        </a>
+                    <?php } ?>
                 </div>
                 <ul class="post-meta">
                     <li>
