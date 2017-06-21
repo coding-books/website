@@ -15,7 +15,7 @@ use yii\helpers\Url;
         <?= Yii::t('books', 'Publish Books') ?>
     </h2>
     <div class="books-box">
-        <?php foreach ($books as $book){ ?>
+        <?php foreach ($books as $model){ ?>
             <?= $this->render('/parts/book.php', [
                 'book' => $book
             ]); ?>
