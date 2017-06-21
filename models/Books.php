@@ -41,7 +41,8 @@ class Books extends \yii\db\ActiveRecord
     {
         return [
             [['slug', 'language_code'], 'required'],
-            [['title', 'description'], 'string'],
+            [['title'], 'string', 'max' => 65],
+            [['description'], 'string', 'max' => 65000],
             [['views', 'created', 'creator_id', 'published'], 'integer'],
             [['slug'], 'string', 'max' => 255],
             [['language_code'], 'string', 'max' => 2],
