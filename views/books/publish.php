@@ -17,7 +17,7 @@ use yii\helpers\Url;
     <div class="books-box">
         <?php foreach ($books as $model){ ?>
             <?= $this->render('/parts/book.php', [
-                'book' => $book
+                'model' => $model
             ]); ?>
         <?php } ?>
     </div>
