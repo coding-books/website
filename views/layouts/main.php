@@ -136,24 +136,22 @@ $this->registerJs($js);
 
 
 <section>
-    <?php if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id == 'index' || Yii::$app->controller->action->id == 'search') {?>
-        <div class="parallax-section">
-            <div class="text-center clearfix">
-                <div id="search-box" class="search-box col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
-                    <div class="input-group search-group">
-                        <input id="search-field" type="text" class="form-control" placeholder="<?= Yii::t('books', 'Search books') ?>" value="<?= Html::encode(strip_tags(trim(Yii::$app->request->get('searchQuery')))) ?>">
-                        <div id="search-button" class="btn btn-default slider-btn animated bounceInUp input-group-addon">
-                            <?= Yii::t('books', 'Search') ?>
-                        </div>
-                        <div id="search-button-mobile" class="btn btn-default slider-btn animated bounceInUp input-group-addon">
-                            <i class="fa fa-search"></i>
-                        </div>
+    <div class="parallax-section">
+        <div class="text-center clearfix">
+            <div id="search-box" class="search-box col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
+                <div class="input-group search-group">
+                    <input id="search-field" type="text" class="form-control" placeholder="<?= Yii::t('books', 'Search books') ?>" value="<?= Html::encode(strip_tags(trim(Yii::$app->request->get('searchQuery')))) ?>">
+                    <div id="search-button" class="btn btn-default slider-btn animated bounceInUp input-group-addon">
+                        <?= Yii::t('books', 'Search') ?>
                     </div>
-                    <div class="clearfix"></div>
+                    <div id="search-button-mobile" class="btn btn-default slider-btn animated bounceInUp input-group-addon">
+                        <i class="fa fa-search"></i>
+                    </div>
                 </div>
+                <div class="clearfix"></div>
             </div>
         </div>
-    <?php } ?>
+    </div>
     <div class="container">
         <?= $content ?>
     </div>

@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\book\BookSearch;
 use app\models\Books;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -58,9 +59,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Books::find()->where(['published' => 1])->orderBy(['created' => SORT_DESC])->limit(6),
+            'pagination' => [
+                'pageSize' => 6,
+            ],
+        ]);
+
         return $this->render('index', [
-            'books' => Books::find()->where(['published' => 1])->orderBy(['created' => SORT_DESC])->limit(6)->all(),
-            'search' => true
+            'booksDataProvider' => $dataProvider
         ]);
     }
 
@@ -106,8 +113,7 @@ class SiteController extends Controller
 
         return $this->render('search', [
             'books' => $books,
-            'searchString' => $searchString,
-            'search' => true
+            'searchString' => $searchString
         ]);
     }
 }

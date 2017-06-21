@@ -1657,6 +1657,14 @@ body section {
     display: inline-block;
 }
 
+.books-box .btn-default {
+    margin: 20px 0;
+}
+
+.about-us {
+    margin: 50px 0;
+}
+
 @media screen and (max-width: 400px) { /* Минимум 512 цветов */
     .single-blog {
         margin-left: 10px;

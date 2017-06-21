@@ -6,6 +6,7 @@ use app\models\Books;
 use app\models\BooksTags;
 use app\models\forms\BookForm;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\helpers\Html;
 use yii\web\Controller;
@@ -75,7 +76,7 @@ class BooksController extends Controller
             if($model->validate()){
                 $model->setBookModel($book);
                 if($model->save()){
-                    \Yii::$app->session->addFlash('success', \Yii::t('messages', 'Book {title} successfully added!', ['title' => $model->title]));
+                    \Yii::$app->session->addFlash('success', \Yii::t('messages', 'Book {title} was sent for moderation!', ['title' => $model->title]));
 
                     return $this->redirect(['/']);
                 }else{
@@ -180,6 +181,23 @@ class BooksController extends Controller
 
         return $this->render('publish', [
             'books'  =>  Books::getInactive()
+        ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionLast () {
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Books::find()->where(['published' => 1])->orderBy(['created' => SORT_DESC]),
+            'pagination' => [
+                'pageSize' => 6,
+            ],
+        ]);
+
+        return $this->render('last', [
+            'booksDataProvider' => $dataProvider
         ]);
     }
 }
