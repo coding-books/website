@@ -1665,6 +1665,29 @@ body section {
     margin: 50px 0;
 }
 
+.share-book {
+    margin: 15px 0;
+    font-size: 15px;
+    position: relative;
+    font-weight: 500;
+}
+
+.share-book:before {
+    color: #fc7700;
+    content: "||";
+    left: 25%;
+    position: absolute;
+    top: 0;
+}
+
+.share-book:after {
+    color: #fc7700;
+    content: "||";
+    position: absolute;
+    right: 25%;
+    top: -2px;
+}
+
 @media screen and (max-width: 400px) { /* Минимум 512 цветов */
     .single-blog {
         margin-left: 10px;
@@ -1703,5 +1726,12 @@ body section {
 
     #search-box.search-box {
         margin-top: 120px;
+    }
+    .share-book:before {
+        left: 15%;
+    }
+
+    .share-book:after {
+        right: 15%;
     }
 }
