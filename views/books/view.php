@@ -36,7 +36,7 @@ $this->registerMetaTag([
     'name' => 'description',
     'content' => StringHelper::truncateWords(
         yii\helpers\HtmlPurifier::process($book->description, [
-            'HTML.Allowed' => false
+            'HTML.Allowed' => ''
         ])
         ,
         22
