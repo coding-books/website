@@ -53,7 +53,6 @@ JS;
 
 
 $this->registerJs($js);
-
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

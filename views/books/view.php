@@ -9,6 +9,7 @@
  * @var $this \yii\web\View
  */
 use yii\bootstrap\Html;
+use yii\helpers\StringHelper;
 use yii\helpers\Url;
 
 \app\assets\JsSocialAsset::register($this);
@@ -30,6 +31,17 @@ JS;
 
 
 $this->registerJs($js);
+
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => StringHelper::truncateWords(
+        yii\helpers\HtmlPurifier::process($book->description, [
+            'HTML.Allowed' => false
+        ])
+        ,
+        22
+    )
+]);
 ?>
 
 <div class="text-center about-us">

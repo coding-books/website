@@ -10,6 +10,10 @@ use yii\widgets\ListView;
 /* @var $booksDataProvider ActiveDataProvider */
 
 $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['appName' => \Yii::$app->name]);
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => Yii::t('seo', 'CoBooks is an online library consisting of books about programming, management of IT projects and other areas related to IT. Site for free online reading and downloading books in different formats.')
+]);
 ?>
 <div class="row clearfix text-center">
     <h2 class="title-one">
