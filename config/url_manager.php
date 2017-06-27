@@ -7,11 +7,11 @@ return [
     'enableDefaultLanguageUrlCode' => true,
     'enableLanguagePersistence' => false,
     'enablePrettyUrl' => true,
-    'enableStrictParsing' => true,
     'showScriptName' => false,
     'rules' => [
         '<module:(pdfjs)>' => '<module>/default/index',
-        '<action:\w+>' => 'site/<action>',
+        '' => 'site/index',
+        '<action>' => 'site/<action>',
         '<controller:(book)>/<id>-<slug>' => '<controller>/view',
         '<controller:(book)>/<action:(edit)>/<id>' => '<controller>/<action>',
         '<controller:(book)>/<action:(publish)>/<id>' => '<controller>/<action>',
