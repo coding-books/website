@@ -9,11 +9,12 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-class BooksController extends Controller
+class BookController extends Controller
 {
     /**
      * @inheritdoc
@@ -154,7 +155,8 @@ class BooksController extends Controller
 
 
         return $this->render('view', [
-            'book'  =>  $book
+            'book'  =>  $book,
+            'pdfFile' => $book->getDownloadLink()
         ]);
     }
 

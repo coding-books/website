@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $book \app\models\Books */
 /* @var $booksPhotos \app\models\BooksPhotos */
 
-$this->title = Yii::t('seo','Find Your Favourite Book | {appName}', ['appName' => \Yii::$app->name]);
+$this->title = Yii::t('seo', 'Find Your Favourite Book | {appName}', ['appName' => \Yii::$app->name]);
 ?>
 <div class="row clearfix text-center">
     <?php if (empty($books)) { ?>
@@ -20,21 +20,17 @@ $this->title = Yii::t('seo','Find Your Favourite Book | {appName}', ['appName' =
                             <?= Yii::t('app', 'Nothing not found') ?>
                         </span>
                     </p>
-                    <br>
-                    <br>
-                    <span>
-                        <?= Yii::t('app', 'Try to change the search conditions') ?>
-                    </span>
-                    <br>
-                    <br>
-                    <strong>
-                        <?= Yii::t('app', 'or') ?>
-                    </strong>
-                    <br>
-                    <br>
-                    <a class="btn btn-default slider-btn" href="<?= Url::to(['/books/add']) ?>">
-                        <?= Yii::t('books', 'Add book') ?>
-                    </a>
+                    <p>
+                            <?= Yii::t('app', 'Try to change the search conditions') ?>
+                    </p>
+                    <p>
+                            <?= Yii::t('app', 'or') ?>
+                    </p>
+                    <p>
+                        <a class="btn btn-default slider-btn" href="<?= Url::to(['/books/add']) ?>">
+                            <?= Yii::t('books', 'Add book') ?>
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -43,8 +39,8 @@ $this->title = Yii::t('seo','Find Your Favourite Book | {appName}', ['appName' =
             <?= Yii::t('books', 'Found books') ?>
         </h4>
         <div class="books-box">
-            <?php foreach ($books as $model){ ?>
-                <?= $this->render('/parts/book.php', [
+            <?php foreach ($books as $model) { ?>
+                <?= $this->render('/parts/book', [
                     'model' => $model
                 ]); ?>
             <?php } ?>

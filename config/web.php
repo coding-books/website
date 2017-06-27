@@ -25,7 +25,12 @@ $config = [
             'admins' => ['mihail', 'Kravalg', 'bobroid']
         ],
         'rbac' => 'dektrium\rbac\RbacWebModule',
-        'i18n' => Zelenin\yii\modules\I18n\Module::className()
+        'i18n' => Zelenin\yii\modules\I18n\Module::className(),
+        //'pdfjs' => ['class' => \yii2assets\pdfjs\Module::className()],
+        'pdfjs' => [
+            'class' => '\yii2assets\pdfjs\Module',
+        ],
+
     ],
     'components' => [
         'request' => [

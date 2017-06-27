@@ -6,6 +6,7 @@
  * Time: 9:41 AM
  *
  * @var \app\models\Books $book
+ * @var string $pdfFile
  * @var $this \yii\web\View
  */
 use yii\bootstrap\Html;
@@ -76,9 +77,15 @@ $this->registerMetaTag([
                     </a>
                 </li>
                 <li class="">
-                    <a href="#download" data-toggle="tab">
+                    <a href="#read" data-toggle="tab">
                         <i class="fa fa-book"></i>
                         <?= Yii::t('books', 'Read') ?>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="<?= Url::to($book->getDownloadLink()) ?>" target="_blank">
+                        <i class="fa fa-cloud-download"></i>
+                        <?= Yii::t('books', 'Download') ?>
                     </a>
                 </li>
                 <!--<li class="">
@@ -96,12 +103,12 @@ $this->registerMetaTag([
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="download">
+                <div class="tab-pane fade" id="read">
                     <div class="media">
                         <div class="media-body">
-                            <a href="<?= Url::to($book->getDownloadLink()) ?>" class="btn btn btn-success" target="_blank">
-                                <?= Yii::t('books','Download') ?>
-                            </a>
+                            <?= \yii2assets\pdfjs\PdfJs::widget([
+                                'url' => $pdfFile
+                            ]); ?>
                         </div>
                     </div>
                 </div>

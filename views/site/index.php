@@ -56,7 +56,7 @@ $this->registerMetaTag([
             'itemView' => '/parts/book',
         ]); ?>
 
-        <a class="btn btn-default" href="<?= \yii\helpers\Url::to(['/books/last']) ?>">
+        <a class="btn btn-default" href="<?= \yii\helpers\Url::to(['/book/last']) ?>">
             <?= Yii::t('app', 'View all') ?>
         </a>
     </div>
