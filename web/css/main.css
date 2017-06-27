@@ -1684,6 +1684,11 @@ body section {
     top: -2px;
 }
 
+.navbar-brand span {
+    font-size: 30px;
+    line-height: 35px;
+}
+
 @media screen and (max-width: 400px) { /* Минимум 512 цветов */
     .single-blog {
         margin-left: 10px;

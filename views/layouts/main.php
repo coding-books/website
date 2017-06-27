@@ -78,7 +78,9 @@ $this->registerJs($js);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                 </button>
-                <a class="navbar-brand" href="<?= Url::to(['/']) ?>" ><h1><?= Yii::$app->name  ?></h1></a>
+                <a class="navbar-brand" href="<?= Url::to(['/']) ?>" >
+                    <span><?= Yii::$app->name  ?></span>
+                </a>
             </div>
             <div class="collapse navbar-collapse">
                     <?php

@@ -54,9 +54,9 @@ $this->registerMetaTag([
             <div id="share-book"></div>
         </div>
         <div class="col-md-8">
-            <h3 class="title">
+            <h1 class="title">
                 <?= Html::encode($book->title) ?>
-            </h3>
+            </h1>
             <div class="tags">
                 <?php if (!empty($book->booksTags) && is_array($book->booksTags)) { ?>
                     <?php foreach ($book->booksTags as $tagRef) { ?>
