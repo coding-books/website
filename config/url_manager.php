@@ -10,6 +10,7 @@ return [
     'showScriptName' => false,
     'ignoreLanguageUrlPatterns' => [
         '#^user/login#' => '#^user/login#',
+        '#^user/auth#' => '#^user/auth#',
     ],
     'rules' => [
         '<module:(pdfjs)>' => '<module>/default/index',
