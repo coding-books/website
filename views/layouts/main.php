@@ -61,7 +61,6 @@ $this->registerJs($js);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="google-site-verification" content="WkDri1Zsd4U3fif-t1GRyL1dYUnC9iw-zBS_dry9bsY" />
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
