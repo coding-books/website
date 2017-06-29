@@ -8,6 +8,9 @@ return [
     'enableLanguagePersistence' => false,
     'enablePrettyUrl' => true,
     'showScriptName' => false,
+    'ignoreLanguageUrlPatterns' => [
+        '#^user/auth#' => '#^user/auth#',
+    ],
     'rules' => [
         '<module:(pdfjs)>' => '<module>/default/index',
         '' => 'site/index',

@@ -61,6 +61,13 @@ $config = [
             'class'   => \yii\authclient\Collection::className(),
             'clients' => $socialClients,
         ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@app/views/user'
+                ],
+            ],
+        ],
         'db' => $db,
         'urlManager' => $urlManager
     ],
