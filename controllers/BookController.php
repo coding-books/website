@@ -14,6 +14,10 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+/**
+ * Class BookController
+ * @package app\controllers
+ */
 class BookController extends Controller
 {
     /**

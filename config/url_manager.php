@@ -15,6 +15,7 @@ return [
         '<controller:(book)>/<id>-<slug>' => '<controller>/view',
         '<controller:(book)>/<action:(edit)>/<id>' => '<controller>/<action>',
         '<controller:(book)>/<action:(publish)>/<id>' => '<controller>/<action>',
+        '<controller:(bookmark)>/<action:(save)>/<id>/<page>' => '<controller>/<action>',
         '<action:(search)>/<searchQuery>' => 'site/<action>',
     ],
 ];

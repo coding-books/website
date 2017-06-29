@@ -12,6 +12,10 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\ContactForm;
 
+/**
+ * Class SiteController
+ * @package app\controllers
+ */
 class SiteController extends Controller
 {
     /**

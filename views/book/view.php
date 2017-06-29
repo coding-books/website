@@ -119,8 +119,9 @@ $this->registerMetaTag([
                                     </a>
                                     <a class="btn btn-success" href="
                                         <?= Url::to([
-                                                '/book/save-bookmark',
-                                            'id' => $book->id
+                                                '/bookmark/save/',
+                                            'id' => $book->id,
+                                            'page' => 1
                                         ]) ?>
                                     ">
                                         <?= Yii::t('book', 'Save bookmark') ?>
