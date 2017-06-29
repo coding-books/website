@@ -1747,4 +1747,9 @@ body section {
     .share-book:after {
         right: 15%;
     }
+
+    .about-us .tab-content {
+        padding: 5px;
+    }
+
 }
