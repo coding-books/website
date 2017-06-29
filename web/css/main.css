@@ -1748,8 +1748,8 @@ body section {
         right: 15%;
     }
 
-    .about-us .tab-content {
-        padding: 5px;
+    #read iframe {
+        display: none;
     }
 
 }
