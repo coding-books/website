@@ -9,7 +9,7 @@ return [
     'enablePrettyUrl' => true,
     'showScriptName' => false,
     'ignoreLanguageUrlPatterns' => [
-        '#^/user/login#' => '#/user/login#',
+        '#^user/login#' => '#^user/login#',
     ],
     'rules' => [
         '<module:(pdfjs)>' => '<module>/default/index',
