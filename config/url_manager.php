@@ -10,7 +10,6 @@ return [
     'ignoreLanguageUrlPatterns' => [
         '#^user/auth#' => '#^user/auth#',
     ],
-    'baseAuthUrl' => '/user/auth',
     'rules' => [
         '<module:(pdfjs)>' => '<module>/default/index',
         '' => 'site/index',
