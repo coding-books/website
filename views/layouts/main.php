@@ -102,7 +102,7 @@ $this->registerJs($js);
                                 ],
                                 [
                                     'label' => Yii::t('menu','Publish books ({count})', ['count' => Books::getInactiveCount()]),
-                                    'url' => ['/books/publish'],
+                                    'url' => ['/book/publish'],
                                     'visible' => Yii::$app->user->can('publishBook')
                                 ],
                                 [
@@ -121,7 +121,7 @@ $this->registerJs($js);
                     echo Nav::widget([
                         'options' => ['class' => 'nav navbar-nav navbar-right'],
                         'items' => [
-                            ['label' => Yii::t('buttons', 'Add book'), 'url' => ['/books/add']],
+                            ['label' => Yii::t('buttons', 'Add book'), 'url' => ['/book/add']],
                             $menuItems,
                             '<li> ' . \app\components\widgets\language\LanguageWidget::widget(['cssClass' => 'language-widget']) . '</li>'
                         ]
