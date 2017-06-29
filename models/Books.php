@@ -90,6 +90,13 @@ class Books extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return int
+     */
+    public function getLastPage () {
+        return 1;
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getBooksPhotos()

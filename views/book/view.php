@@ -106,6 +106,27 @@ $this->registerMetaTag([
                 <div class="tab-pane fade" id="read">
                     <div class="media">
                         <div class="media-body">
+                            <div class="book-buttons">
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-primary" target="_blank" href="
+                                        <?= Url::to([
+                                                '/pdfjs',
+                                            'file' => $book->getDownloadLink() . '#page=' . $book->getLastPage(),
+                                            'zoom' => 'page-width'
+                                        ]) ?>
+                                    ">
+                                        <?= Yii::t('book', 'Full-screen reading') ?>
+                                    </a>
+                                    <a class="btn btn-success" href="
+                                        <?= Url::to([
+                                                '/book/save-bookmark',
+                                            'id' => $book->id
+                                        ]) ?>
+                                    ">
+                                        <?= Yii::t('book', 'Save bookmark') ?>
+                                    </a>
+                                </div>
+                            </div>
                             <?= \yii2assets\pdfjs\PdfJs::widget([
                                 'url' => $pdfFile
                             ]); ?>

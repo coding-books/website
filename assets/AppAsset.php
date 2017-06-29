@@ -18,7 +18,7 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/main.css?33',
+        'css/main.css?34',
         'css/prettyPhoto.css',
         'css/responsive.css?1',
     ];

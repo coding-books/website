@@ -1648,7 +1648,7 @@ body section {
 }
 
 .tags {
-    margin: 10px;
+    margin: 20px 10px;
 }
 
 .tags a {
@@ -1687,6 +1687,18 @@ body section {
 .navbar-brand span {
     font-size: 30px;
     line-height: 35px;
+}
+
+.book-buttons {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.book-buttons div.btn-group {
+    margin: 0 auto;
+    text-align: center;
+    width: inherit;
+    display: inline-block;
 }
 
 @media screen and (max-width: 400px) { /* Минимум 512 цветов */
