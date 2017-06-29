@@ -59,7 +59,6 @@ $config = [
         ],
         'authClientCollection' => [
             'class'   => \yii\authclient\Collection::className(),
-            'baseAuthUrl' => '/user/auth',
             'clients' => $socialClients,
         ],
         'db' => $db,
