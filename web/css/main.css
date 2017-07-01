@@ -1371,7 +1371,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 25px 0;
     color: #43484E;
     font-size: 16px;
-    height: 60px;
 }
 
 #footer p {
@@ -1699,6 +1698,18 @@ body section {
     text-align: center;
     width: inherit;
     display: inline-block;
+}
+
+.social-icons {
+    margin-bottom: 20px;
+}
+
+.social-icons a i {
+    color: #777;
+}
+
+.social-icons a:hover i {
+    color: #fc7700;
 }
 
 @media screen and (max-width: 400px) { /* Минимум 512 цветов */
