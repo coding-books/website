@@ -1656,7 +1656,7 @@ body section {
     display: inline-block;
 }
 
-.books-box .btn-default {
+.books-box > .btn-default {
     margin: 20px 0;
 }
 
@@ -1761,6 +1761,13 @@ body section {
 
     #read iframe {
         display: none;
+    }
+
+    #read .book-buttons a {
+        float: none;
+        margin: 10px 0;
+        border: none;
+        border-radius: 0;
     }
 
 }

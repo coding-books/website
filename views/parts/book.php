@@ -29,15 +29,15 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
                     <a href="<?= Url::to(['book/view', 'slug' => $model->slug, 'id' => $model->id]) ?>" class="btn btn-xs btn-info">
                         <?= Yii::t('books','Read More') ?>
                     </a>
+                    <a href="<?= Url::to($model->getDownloadLink()) ?>" class="btn btn-xs btn-success" target="_blank">
+                        <?= Yii::t('books','Download') ?>
+                    </a>
                     <a href="<?= Url::to([
                         '/pdfjs',
                         'file' => $model->getDownloadLink() . '#page=' . $model->getLastPage(),
                         'zoom' => 'page-width'
                     ]) ?>" class="btn btn-xs btn-default">
                         <?= Yii::t('books','Read online') ?>
-                    </a>
-                    <a href="<?= Url::to($model->getDownloadLink()) ?>" class="btn btn-xs btn-success" target="_blank">
-                        <?= Yii::t('books','Download') ?>
                     </a>
                     <?php if (Yii::$app->user->can('editBook')) {?>
                         <a href="<?= Url::to(['book/edit', 'id' => $model->id])?>" class="btn btn-xs btn-primary" target="_blank">
