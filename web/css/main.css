@@ -1770,4 +1770,12 @@ body section {
         border-radius: 0;
     }
 
+    body > section > div:first-child:not(.parallax-section) {
+        margin-bottom: 80px;
+    }
+
+    .books-box .list-view .col-md-12 {
+        height: 20px;
+    }
+
 }
