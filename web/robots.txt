@@ -1,2 +1,4 @@
 User-agent: *
 Sitemap: https://cobooks.tk/sitemap.xml
+Disallow: https://cobooks.tk/uk/*
+Disallow: https://cobooks.tk/en/*
