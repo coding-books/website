@@ -194,6 +194,7 @@ $this->registerJs($js);
                 <a target="_blank" href="https://twitter.com/CoBookselibrary"><i class="fa fa-twitter"></i></a>
                 <a target="_blank" href="https://plus.google.com/u/4/116106420087536230816"><i class="fa fa-google-plus"></i></a>
                 <a target="_blank" href="https://www.linkedin.com/in/co-books-07a445146"><i class="fa fa-linkedin"></i></a>
+                <a target="_blank" href="https://vk.com/cobooks_lib"><i class="fa fa-vk"></i></a>
             </div>
             <p>CoBooks © 2017</p>
         </div>
