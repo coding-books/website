@@ -18,6 +18,14 @@ use yii\helpers\Url;
 $this->title = $book->title . ' - ';
 $this->title .= Yii::t('seo', 'read online & free download book');
 
+$seoShortDesc = StringHelper::truncateWords(
+    yii\helpers\HtmlPurifier::process($book->description, [
+        'HTML.Allowed' => ''
+    ])
+    ,
+    15
+);
+
 $js = <<<JS
     $("#share-book").jsSocials({
         showLabel: false,
@@ -25,7 +33,7 @@ $js = <<<JS
             'twitter', 'facebook', 'googleplus', 'linkedin', 'vkontakte', 'whatsapp', 'telegram', 'viber', 'pinterest', 'email', 'stumbleupon'
         ],
         url: document.location.href,
-        text: '$this->title',
+        text: '$seoShortDesc',
         shareIn: 'popup'
     });
 JS;
@@ -40,7 +48,7 @@ $this->registerMetaTag([
             'HTML.Allowed' => ''
         ])
         ,
-        22
+        20
     )
 ]);
 ?>
