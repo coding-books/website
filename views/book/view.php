@@ -23,7 +23,7 @@ $seoShortDesc = StringHelper::truncateWords(
         'HTML.Allowed' => ''
     ])
     ,
-    15
+    14
 );
 
 $js = <<<JS
