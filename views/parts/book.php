@@ -9,7 +9,7 @@ use yii\helpers\Url;
 $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['appName' => \Yii::$app->name]);
 ?>
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?php if ($this->beginCache('BookView', ['duration' => 86400])) {  ?>
+    <?php if ($this->beginCache('BookView' . $model->id, ['duration' => 86400])) {  ?>
         <div class="single-blog row">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <a href="<?= Url::to(['book/view', 'slug' => $model->slug, 'id' => $model->id]) ?>">
