@@ -9,7 +9,8 @@ use yii\helpers\Url;
 $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['appName' => \Yii::$app->name]);
 ?>
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="single-blog row">
+    <?php if ($this->beginCache('BookView', ['duration' => 86400])) {  ?>
+        <div class="single-blog row">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <a href="<?= Url::to(['book/view', 'slug' => $model->slug, 'id' => $model->id]) ?>">
                 <img src="<?= $model->getMainBookPhoto() ? $model->getMainBookPhoto()->src : \Yii::$app->params['no_image_src'] ?>" alt="<?= Html::encode(Yii::t('seo','{title} - Book cover', ['title' => $model->title])) ?>">
@@ -63,4 +64,7 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
             </div>
         </div>
     </div>
+    <?php
+        $this->endCache();}
+    ?>
 </div>
