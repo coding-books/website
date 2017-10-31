@@ -48,7 +48,7 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
                             <?= $this->renderDynamic('return Yii::t("books", "Posted On");') ?>
                         </strong>
                         <br>
-                        <?= $this->renderDynamic('return \Yii::$app->formatter->asDate($model->created, "medium")') ?>
+                        <?= $this->renderDynamic('return \Yii::$app->formatter->asDate($model->created, "medium");') ?>
                     </li>
                 </ul>
             </div>
