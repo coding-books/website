@@ -7,6 +7,7 @@ use yii\helpers\Url;
 /* @var $model \app\models\Books */
 
 $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['appName' => \Yii::$app->name]);
+$this->params['model'] = $model;
 ?>
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?php if ($this->beginCache('BookView' . $model->id, ['duration' => 86400])) {  ?>
@@ -48,7 +49,7 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
                             <?= $this->renderDynamic('return Yii::t("books", "Posted On");') ?>
                         </strong>
                         <br>
-                        <?= $this->renderDynamic('return \Yii::$app->formatter->asDate($model->created, "medium");') ?>
+                        <?= $this->renderDynamic('return \Yii::$app->formatter->asDate($this->params["model"]->created, "medium");') ?>
                     </li>
                 </ul>
             </div>
