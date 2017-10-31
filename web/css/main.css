@@ -854,7 +854,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 30px;
 }
 
-#books-categories
 .portfolio-filter {
     margin-bottom: 40px;
     margin-top: 10px;
@@ -862,27 +861,24 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-#books-categories
 .portfolio-filter li {
     display: inline-block;
+    float: none;
 }
 
-#books-categories
-.portfolio-filter li a:hover,
-#books-categories
-.portfolio-filter li a:focus,
-#books-categories
-.portfolio-filter li a:active,
-#books-categories
-.portfolio-filter li .active {
+.portfolio-filter ul li.active a:hover,
+.portfolio-filter ul li a:hover,
+.portfolio-filter ul li.active a:focus,
+.portfolio-filter ul li.active a:active,
+.portfolio-filter ul li.active a {
     border: 1px solid #fc7700;
     color: #686868;
     box-shadow: none;
     -webkit-box-shadow: none;
     opacity: 1;
+    background: rgba(67, 72, 78, 0);
 }
 
-#books-categories
 .portfolio-filter li a {
     color: #686868;
     font-size: 16px;

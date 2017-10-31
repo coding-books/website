@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\book\BookSearch;
 use app\models\Books;
+use app\models\BooksViews;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
@@ -70,8 +71,16 @@ class SiteController extends Controller
             ],
         ]);
 
+        $popularBooksDataProvider = new ActiveDataProvider([
+            'query' => Books::getMostPopularQuery(),
+            'pagination' => [
+                'pageSize' => 6,
+            ],
+        ]);
+
         return $this->render('index', [
-            'booksDataProvider' => $dataProvider
+            'booksDataProvider' => $dataProvider,
+            'popularBooksDataProvider' => $popularBooksDataProvider,
         ]);
     }
 

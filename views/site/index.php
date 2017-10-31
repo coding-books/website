@@ -8,6 +8,7 @@ use yii\widgets\ListView;
 /* @var $book \app\models\Books */
 /* @var $booksPhotos \app\models\BooksPhotos */
 /* @var $booksDataProvider ActiveDataProvider */
+/* @var $popularBooksDataProvider ActiveDataProvider */
 
 $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['appName' => \Yii::$app->name]);
 $this->registerMetaTag([
@@ -19,46 +20,49 @@ $this->registerMetaTag([
     <h2 class="title-one">
         <?= Yii::t('books', 'Popular Books') ?>
     </h2>
-    <div id="books-categories">
-        <ul class="portfolio-filter">
-            <li>
-                <a class="btn btn-default active" href="#" data-filter="*">
+    <div id="books-categories" class="portfolio-filter">
+        <ul class="nav nav-pills text-center">
+            <li class="active">
+                <a data-toggle="pill"  href="#last-books">
                     <?= Yii::t('categories', 'Novelties') ?>
                 </a>
             </li>
-            <!--<li>
-                <a class="btn btn-default" href="#" data-filter=".html">
+            <li>
+                <a data-toggle="pill"  href="#popular-books">
                     <?= Yii::t('categories', 'Popular') ?>
                 </a>
             </li>
-            <li>
-                <a class="btn btn-default" href="#" data-filter=".wordpress">
-                    <?= Yii::t('categories', 'OOP') ?>
-                </a>
-            </li>
-            <li>
-                <a class="btn btn-default" href="#" data-filter=".joomla">
-                    <?= Yii::t('categories', 'GoF') ?>
-                </a>
-            </li>
-            <li>
-                <a class="btn btn-default" href="#" data-filter=".megento">
-                    <?= Yii::t('categories', 'Web') ?>
-                </a>
-            </li>-->
         </ul>
     </div>
-    <div class="books-box">
-        <?= ListView::widget([
-            'dataProvider' => $booksDataProvider,
-            'summary' => false,
-            'layout' => '{items}',
-            'itemView' => '/parts/book',
-        ]); ?>
+    <div class="tab-content">
+        <div id="last-books" class="tab-pane fade in active">
+            <div class="books-box">
+                <?= ListView::widget([
+                    'dataProvider' => $booksDataProvider,
+                    'summary' => false,
+                    'layout' => '{items}',
+                    'itemView' => '/parts/book',
+                ]); ?>
 
-        <a class="btn btn-default" href="<?= \yii\helpers\Url::to(['/book/last']) ?>">
-            <?= Yii::t('app', 'View all') ?>
-        </a>
+                <a class="btn btn-default" href="<?= \yii\helpers\Url::to(['/book/last']) ?>">
+                    <?= Yii::t('app', 'View all') ?>
+                </a>
+            </div>
+        </div>
+        <div id="popular-books" class="tab-pane fade">
+            <div class="popular-books-box">
+                <?= ListView::widget([
+                    'dataProvider' => $popularBooksDataProvider,
+                    'summary' => false,
+                    'layout' => '{items}',
+                    'itemView' => '/parts/book',
+                ]); ?>
+
+                <a class="btn btn-default" href="<?= \yii\helpers\Url::to(['/book/popular']) ?>">
+                    <?= Yii::t('app', 'View all') ?>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 

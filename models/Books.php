@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "books".
@@ -83,6 +84,23 @@ class Books extends \yii\db\ActiveRecord
      */
     public static function getInactiveCount () {
         return self::find()->where(['published' => 0])->count();
+    }
+
+    /**
+     * @param int $num
+     * @return ActiveQuery
+     */
+    public static function getMostPopularQuery ($num = 6) {
+        $subQuery = BooksViews::find()
+            ->select(['book_id', 'COUNT(book_id) as totalCount'])
+            ->groupBy('book_id');
+
+        $query = Books::find()
+            ->innerJoin(['bv' => $subQuery], 'bv.book_id = ' . Books::tableName() . '.id')
+            ->orderBy('bv.totalCount DESC')
+            ->limit($num);
+
+        return $query;
     }
 
     public function publish () {

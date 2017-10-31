@@ -209,4 +209,21 @@ class BookController extends Controller
             'booksDataProvider' => $dataProvider
         ]);
     }
+
+    /**
+     * @return string
+     */
+    public function actionPopular () {
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Books::getMostPopularQuery(),
+            'pagination' => [
+                'pageSize' => 6,
+            ],
+        ]);
+
+        return $this->render('popular', [
+            'booksDataProvider' => $dataProvider
+        ]);
+    }
 }
