@@ -28,37 +28,27 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
                 </a>
                 <div class="button-actions">
                     <a href="<?= Url::to(['book/view', 'slug' => $model->slug, 'id' => $model->id]) ?>" class="btn btn-xs btn-info">
-                        <?= Yii::t('books','Read More') ?>
+                        <?= $this->renderDynamic('return Yii::t("books","Read More")'); ?>
                     </a>
                     <a href="<?= Url::to($model->getDownloadLink()) ?>" class="btn btn-xs btn-success" target="_blank">
-                        <?= Yii::t('books','Download') ?>
+                        <?= $this->renderDynamic('return Yii::t("books", "Download");') ?>
                     </a>
                     <a href="<?= Url::to([
                         '/pdfjs',
                         'file' => $model->getDownloadLink() . '#page=' . $model->getLastPage(),
                         'zoom' => 'page-width'
                     ]) ?>" class="btn btn-xs btn-default">
-                        <?= Yii::t('books','Read online') ?>
+                        <?= $this->renderDynamic('return Yii::t("books", "Read online");') ?>
                     </a>
-                    <?php if (Yii::$app->user->can('editBook')) {?>
-                        <a href="<?= Url::to(['book/edit', 'id' => $model->id])?>" class="btn btn-xs btn-primary" target="_blank">
-                            <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                        </a>
-                    <?php } ?>
-                    <?php if (Yii::$app->user->can('publishBook') && !$model->published) {?>
-                        <a href="<?= Url::to(['book/publish', 'id' => $model->id])?>" class="btn btn-xs btn-success">
-                            <?= Yii::t('books','Publish') ?>
-                        </a>
-                    <?php } ?>
                 </div>
                 <ul class="post-meta">
                     <li>
                         <i class="fa fa-clock-o"></i>
                         <strong>
-                            <?= \Yii::t('books', 'Posted On') ?>
+                            <?= $this->renderDynamic('return Yii::t("books", "Posted On");') ?>
                         </strong>
                         <br>
-                        <?= \Yii::$app->formatter->asDate($model->created, 'medium') ?>
+                        <?= $this->renderDynamic('return \Yii::$app->formatter->asDate($model->created, "medium")') ?>
                     </li>
                 </ul>
             </div>
