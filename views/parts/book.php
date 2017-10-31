@@ -28,7 +28,7 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
                 </a>
                 <div class="button-actions">
                     <a href="<?= Url::to(['book/view', 'slug' => $model->slug, 'id' => $model->id]) ?>" class="btn btn-xs btn-info">
-                        <?= $this->renderDynamic('return Yii::t("books","Read More")'); ?>
+                        <?= $this->renderDynamic('return Yii::t("books","Read More");'); ?>
                     </a>
                     <a href="<?= Url::to($model->getDownloadLink()) ?>" class="btn btn-xs btn-success" target="_blank">
                         <?= $this->renderDynamic('return Yii::t("books", "Download");') ?>
