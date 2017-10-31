@@ -27,7 +27,7 @@ $this->title = Yii::t('seo', 'Find Your Favourite Book | {appName}', ['appName' 
                             <?= Yii::t('app', 'or') ?>
                     </p>
                     <p>
-                        <a class="btn btn-default slider-btn" href="<?= Url::to(['/books/add']) ?>">
+                        <a class="btn btn-default slider-btn" href="<?= Url::to(['/book/add']) ?>">
                             <?= Yii::t('books', 'Add book') ?>
                         </a>
                     </p>

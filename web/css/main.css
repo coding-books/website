@@ -1626,7 +1626,7 @@ img {
 }
 
 body > section > div:first-child:not(.parallax-section) {
-    margin-top: 110px;
+    margin-top: 5%;
     margin-bottom: 40px;
 }
 

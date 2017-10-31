@@ -41,7 +41,7 @@ $this->title = Yii::t('seo','{appName} - Coding books | Programming Library', ['
                     </a>
                     <?php if (Yii::$app->user->can('editBook')) {?>
                         <a href="<?= Url::to(['book/edit', 'id' => $model->id])?>" class="btn btn-xs btn-primary" target="_blank">
-                            <?= Yii::t('books','Edit') ?>
+                            <i class="fa fa-pencil-square" aria-hidden="true"></i>
                         </a>
                     <?php } ?>
                     <?php if (Yii::$app->user->can('publishBook') && !$model->published) {?>

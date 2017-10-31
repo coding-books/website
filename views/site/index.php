@@ -18,24 +18,38 @@ $this->registerMetaTag([
 ?>
 <div class="row clearfix text-center">
     <h2 class="title-one">
-        <?= Yii::t('books', 'Popular Books') ?>
+        <?= Yii::t('seo', 'Free IT e-library') ?>
     </h2>
     <div id="books-categories" class="portfolio-filter">
         <ul class="nav nav-pills text-center">
             <li class="active">
-                <a data-toggle="pill"  href="#last-books">
-                    <?= Yii::t('categories', 'Novelties') ?>
+                <a data-toggle="pill"  href="#popular-books">
+                    <?= Yii::t('books', 'Popular Books') ?>
                 </a>
             </li>
             <li>
-                <a data-toggle="pill"  href="#popular-books">
-                    <?= Yii::t('categories', 'Popular') ?>
+                <a data-toggle="pill"  href="#last-books">
+                    <?= Yii::t('categories', 'Novelties') ?>
                 </a>
             </li>
         </ul>
     </div>
     <div class="tab-content">
-        <div id="last-books" class="tab-pane fade in active">
+        <div id="popular-books" class="tab-pane fade in active">
+            <div class="books-box">
+                <?= ListView::widget([
+                    'dataProvider' => $popularBooksDataProvider,
+                    'summary' => false,
+                    'layout' => '{items}',
+                    'itemView' => '/parts/book',
+                ]); ?>
+
+                <a class="btn btn-default" href="<?= \yii\helpers\Url::to(['/book/popular']) ?>">
+                    <?= Yii::t('app', 'View all') ?>
+                </a>
+            </div>
+        </div>
+        <div id="last-books" class="tab-pane fade">
             <div class="books-box">
                 <?= ListView::widget([
                     'dataProvider' => $booksDataProvider,
@@ -45,20 +59,6 @@ $this->registerMetaTag([
                 ]); ?>
 
                 <a class="btn btn-default" href="<?= \yii\helpers\Url::to(['/book/last']) ?>">
-                    <?= Yii::t('app', 'View all') ?>
-                </a>
-            </div>
-        </div>
-        <div id="popular-books" class="tab-pane fade">
-            <div class="popular-books-box">
-                <?= ListView::widget([
-                    'dataProvider' => $popularBooksDataProvider,
-                    'summary' => false,
-                    'layout' => '{items}',
-                    'itemView' => '/parts/book',
-                ]); ?>
-
-                <a class="btn btn-default" href="<?= \yii\helpers\Url::to(['/book/popular']) ?>">
                     <?= Yii::t('app', 'View all') ?>
                 </a>
             </div>
