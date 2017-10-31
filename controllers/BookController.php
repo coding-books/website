@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\book\factory\BookViewsFactory;
 use app\models\Books;
 use app\models\BooksTags;
+use app\models\BooksViews;
 use app\models\forms\BookForm;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -153,10 +155,11 @@ class BookController extends Controller
     public function actionView($id, $slug = null){
         $book = Books::findOne(['id' => $id]);
 
-        if(!$book){
+        if (!$book) {
             throw new NotFoundHttpException('Book not found!');
         }
 
+        BookViewsFactory::build($book);
 
         return $this->render('view', [
             'book'  =>  $book,

@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "books_views".
@@ -30,8 +32,22 @@ class BooksViews extends \yii\db\ActiveRecord
     {
         return [
             [['book_id'], 'required'],
-            [['book_id', 'timestamp', 'ip'], 'integer'],
+            [['book_id', 'timestamp'], 'integer'],
+            [['ip'], 'ip'],
+            [['book_id', 'ip'], 'unique', 'targetAttribute' => ['book_id', 'ip']],
             [['book_id'], 'exist', 'skipOnError' => true, 'targetClass' => Books::className(), 'targetAttribute' => ['book_id' => 'id']],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'timestamp',
+                'updatedAtAttribute' => false,
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 
