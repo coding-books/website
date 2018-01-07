@@ -57,6 +57,9 @@ $this->registerMetaTag([
     <div class="row">
         <div class="col-md-4">
             <img src="<?= $book->getMainBookPhoto() ? $book->getMainBookPhoto()->src : \Yii::$app->params['no_image_src'] ?>" alt="<?= Html::encode(Yii::t('seo','{title} - Book cover', ['title' => $book->title])) ?>">
+            <div id="caw4TqEVH2lTzf2gagOwNR">
+                <a href="http://actionteaser.ru">ActionTeaser.ru - тизерная реклама</a>
+            </div>
             <p class="share-book">
                 <?= Yii::t('share', 'Share it with friends') ?>
             </p>
@@ -153,3 +156,10 @@ $this->registerMetaTag([
         </div>
     </div>
 </div>
+
+<script language="Javascript">
+    var bid = 'w4TqEVH2lTzf2gagOwNR';
+    var sid = '10258';
+    var async = 1;
+</script>
+<script type="text/javascript" src="//v.actionteaser.ru/news_ssl.js"></script>
